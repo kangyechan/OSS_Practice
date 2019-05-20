@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
-
 #define TOKEN_COUNT 50
 
 typedef enum {
@@ -11,6 +9,7 @@ typedef enum {
     ARRAY = 2,
     STRING =3,
     PRIMITIVE = 4
+
 }type_t;
 
 typedef struct {
@@ -21,12 +20,14 @@ typedef struct {
     char *string;
 }tok_t;
 
+
+
 typedef struct _JSON{
     tok_t tokens[TOKEN_COUNT];
 } JSON;
 
-
-char* readfile(char* filename, int* filesize) {
+char* readfile(char* filename, int* filesize)
+{
     FILE* fp = fopen(filename, "r");
 
     if (fp ==  NULL){
@@ -37,53 +38,66 @@ char* readfile(char* filename, int* filesize) {
     int size;
     char* buffer;
 
-    fseek(fp, 0, SEEK_END); // 파일의 끝위치를 찾음
-    size = ftell(fp); // size를 파일의 끝위치(index)로 지정
-    fseek(fp, 0, SEEK_SET); // 처음위치로..
+    fseek(fp, 0, SEEK_END);
+    size = ftell(fp); //current file position
+    fseek(fp, 0, SEEK_SET);
 
-    buffer = (char*)malloc(size+1); // 위에서 얻은 size만큼 버퍼 생성
-    memset(buffer, 0, size+1); // 버퍼 초기화
+    buffer = (char*)malloc(size+1);
+    memset(buffer, 0, size+1);
 
-    if(fread(buffer, 1, size, fp) < 1){ // 버퍼를 못읽는다면
-        *filesize = 0; // 사이즈 0
-        free(buffer); // 버퍼 메모리 제거
+    if(fread(buffer,1, size, fp)<1){
+        *filesize = 0;
+        free(buffer);
         fclose(fp);
         return NULL;
     }
 
-    *filesize = size; // 읽을 수 있다면 파일size는 버퍼의 사이즈 
+    *filesize = size;
+
     fclose(fp);
+
     return buffer;
+
 }
 
-void json_parse(char *doc, int size, JSON *json, int *b_cnt) {
+void json_parse(char *doc, int size, JSON *json, int *b_cnt)
+{
     int cnt = 0;
     int pos = 0; //for checking position in doc.
     int e,s; //ending, starting position for each token
     int tokenIndex = 0; //index for token
 
-    while(pos < size) {
-        switch(doc[pos]) {
+    while(pos < size)
+    {
+        switch(doc[pos])
+        {
             case '"':
-                json->tokens[tokenIndex].type = STRING; // token.type is STRING
-                s = pos+1;  // the word starts after "
-                json->tokens[tokenIndex].start = s;  // token.start = s
-                while(doc[pos+1]!= '"'){ // increase pos while it meets "
-                    pos++;
-                }
-                e = ++pos; // the word ends when doc[pos] meets ". (includes last ")
-                json->tokens[tokenIndex].end = e; // token.end = e
-                json->tokens[tokenIndex].size = 1; //if : is coming right after "" {size = 1}
-                if(doc[pos+1]!=':'){// else {size = 0}
-                    json->tokens[tokenIndex].size = 0;
-                }
-                //put doc[s]~doc[e+1] in token.string
-                json->tokens[tokenIndex].string = (char *)malloc(e-s+1);
-                memset(json->tokens[tokenIndex].string, 0, e-s+1);
-                memcpy(json->tokens[tokenIndex].string, doc+s, e-s);
+            json->tokens[tokenIndex].type = STRING; // token.type is STRING
+            s = pos+1;  // the word starts after "
+            json->tokens[tokenIndex].start = s;  // token.start = s
+             while(doc[pos+1]!= '"'){ // increase pos until it meets "
                 pos++;
-                tokenIndex++;
-                break;
+             }
+
+             e = ++pos; // the word ends when doc[pos] meets ". (includes last ")
+             json->tokens[tokenIndex].end = e; // token.end = e
+            
+             json->tokens[tokenIndex].size=1; //if : is coming right after "" {size = 1}
+             if(doc[pos+1]!=':'){// else {size = 0}
+                 json->tokens[tokenIndex].size = 0;
+             }
+
+            //put doc[s]~doc[e+1] in token.string
+             json->tokens[tokenIndex].string = (char *)malloc(e-s +1);
+             memset(json->tokens[tokenIndex].string, 0, e-s + 1);
+             memcpy(json->tokens[tokenIndex].string, doc+s, e-s);
+
+             pos++;
+             tokenIndex++;
+
+             break;
+
+             
              case '[':
              
              json->tokens[tokenIndex].type = ARRAY; // token.type is STRING
@@ -127,7 +141,6 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt) {
                 memset(json->tokens[arraytokenIndex].string, 0, pos-json->tokens[arraytokenIndex].start + 1);
                 memcpy(json->tokens[arraytokenIndex].string, doc+json->tokens[arraytokenIndex].start, pos-json->tokens[arraytokenIndex].start+1);
                 break;
-
             case '-': case '0': case '1': case '2': case '3': case '4':
             case '5': case '6': case '7': case '8': case '9':
             case 't': case 'f': case 'n':
@@ -149,40 +162,45 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt) {
                 pos++;
                 tokenIndex++;
                 break;
+           
+            
+
             default:
-                pos++;
+             pos++;
         }
     }
+    
     *b_cnt = tokenIndex;    //update bigcnt
 }
 
-void freeJson(JSON *json, int bigcnt) {
+void freeJson(JSON *json, int bigcnt){
     for (int i = 0; i<bigcnt; i++){
         if (json->tokens[i].type == STRING)
             free(json->tokens[i].string);
     }
 }
+int main(int argc, char** argv)
+{
+    int filesize=0;
+    char* doc = readfile(argv[1], &filesize);
+    int bigcnt=0; //total count including objects in value.
 
-int main(int argc, char** argv) {
-    int filesize = 0;
-    char* doc = readfile(argv[1], &filesize); // 파일 사이즈 만큼 doc 생성
-    int bigcnt = 0; // total count including objects in value.
-
-    if(doc == NULL){ // 파일이 없다면
+    if(doc == NULL){
         printf("NULL");
         return -1;
     }
 
-    JSON json = {0}; // json 생성 및 초기화
+    JSON json = {0, };
 
-    json_parse(doc, filesize, &json, &bigcnt); // 파서 호출
+    json_parse(doc, filesize, &json, &bigcnt);
 
     //printing
     for(int i = 0; i<bigcnt;i++){
         printf("[%d] %s (size = %d, %d~%d, %u) \n", i+1, json.tokens[i].string, json.tokens[i].size, json.tokens[i].start, json.tokens[i].end, json.tokens[i].type);
     }
 
-    freeJson(&json, bigcnt); 
+    freeJson(&json, bigcnt);
 
     return 0;
 }
+
