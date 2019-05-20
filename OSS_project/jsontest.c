@@ -141,7 +141,30 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt)
                 memset(json->tokens[arraytokenIndex].string, 0, pos-json->tokens[arraytokenIndex].start + 1);
                 memcpy(json->tokens[arraytokenIndex].string, doc+json->tokens[arraytokenIndex].start, pos-json->tokens[arraytokenIndex].start+1);
                 break;
+            case '-': case '0': case '1': case '2': case '3': case '4':
+            case '5': case '6': case '7': case '8': case '9':
+            case 't': case 'f': case 'n':
+                json->tokens[tokenIndex].type = PRIMITIVE;
+                s = pos;
+                json->tokens[tokenIndex].start = s;
+                while(doc[pos+1] != ',') { // ','만날때까지
+                    if(doc[pos+1] == '}') { // 만약 ','를 만나지 않았는데 '}'를
+ 만난다면 마지막이 개행문자 제거를 위해 pos--
+                        pos--;
+                        break;
+                    } else pos++;
+                }
+                e = ++pos; // the word ends when doc[pos] meets ',' or NULL
+                json->tokens[tokenIndex].end = e;
+                json->tokens[tokenIndex].size = 0;
+                json->tokens[tokenIndex].string = (char *)malloc(e-s+1);
+                memset(json->tokens[tokenIndex].string, 0, e-s+1);
+                memcpy(json->tokens[tokenIndex].string, doc+s, e-s);
+                pos++;
+                tokenIndex++;
+                break;
             
+
             default:
              pos++;
         }
