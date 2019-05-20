@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#define TOKEN_COUNT 50
 
 typedef enum {
     UNDEFINED = 0,
@@ -20,7 +20,7 @@ typedef struct {
     char *string;
 }tok_t;
 
-#define TOKEN_COUNT 50
+
 
 typedef struct _JSON{
     tok_t tokens[TOKEN_COUNT];
@@ -140,6 +140,7 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt)
                 json->tokens[arraytokenIndex].string = (char *)malloc(pos-json->tokens[arraytokenIndex].start + 1);
                 memset(json->tokens[arraytokenIndex].string, 0, pos-json->tokens[arraytokenIndex].start + 1);
                 memcpy(json->tokens[arraytokenIndex].string, doc+json->tokens[arraytokenIndex].start, pos-json->tokens[arraytokenIndex].start+1);
+                break;
             
             default:
              pos++;
