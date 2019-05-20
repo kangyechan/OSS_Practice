@@ -84,6 +84,50 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt) {
                 pos++;
                 tokenIndex++;
                 break;
+             case '[':
+             
+             json->tokens[tokenIndex].type = ARRAY; // token.type is STRING
+             int arraytokenIndex = tokenIndex;//save tokenIndex for array we found             
+             s = pos;  // the token starts at '['
+             json->tokens[arraytokenIndex].start = s;  // token.start = s
+             int size =0;
+             while(doc[pos]!= ']'){ // increase pos until it meets "
+                pos++;
+
+                if(doc[pos]=='"'){
+                    tokenIndex++; //increase tokenIndex for element found insdie array
+                    size++; //increase size for each element found. This is array size.
+                    json->tokens[tokenIndex].type = STRING; // token.type is STRING
+                    s = pos+1;  // the word starts after "
+                    json->tokens[tokenIndex].start = s;  // token.start = s
+                    while(doc[pos+1]!= '"'){ // increase pos until it meets "
+                        pos++;
+                    }
+
+                    e = ++pos; // the word ends when doc[pos] meets ". (includes last ")
+                    json->tokens[tokenIndex].end = e; // token.end = e
+                    
+                    json->tokens[tokenIndex].size=0; //0 because it is a value
+
+                    //put doc[s]~doc[e+1] in token.string
+                    json->tokens[tokenIndex].string = (char *)malloc(e-s +1);
+                    memset(json->tokens[tokenIndex].string, 0, e-s + 1);
+                    memcpy(json->tokens[tokenIndex].string, doc+s, e-s);
+                    //  printf("[array element] %s (size = %d, %d~%d, %u) \n", json->tokens[tokenIndex].string, json->tokens[tokenIndex].size, json->tokens[tokenIndex].start, json->tokens[tokenIndex].end, json->tokens[tokenIndex].type);
+                    pos++;
+                }
+
+
+             }//array ended 
+                tokenIndex++; //increase tokenIndex because we have found all elements in array. Prepare for next token.
+                json->tokens[arraytokenIndex].end = pos;
+                json->tokens[arraytokenIndex].size = size;
+                //put doc[s]~doc[e+1] in token.string for the array
+                json->tokens[arraytokenIndex].string = (char *)malloc(pos-json->tokens[arraytokenIndex].start + 1);
+                memset(json->tokens[arraytokenIndex].string, 0, pos-json->tokens[arraytokenIndex].start + 1);
+                memcpy(json->tokens[arraytokenIndex].string, doc+json->tokens[arraytokenIndex].start, pos-json->tokens[arraytokenIndex].start+1);
+                break;
+
             case '-': case '0': case '1': case '2': case '3': case '4':
             case '5': case '6': case '7': case '8': case '9':
             case 't': case 'f': case 'n':
