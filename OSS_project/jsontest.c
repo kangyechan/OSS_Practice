@@ -148,9 +148,8 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt)
                 s = pos;
                 json->tokens[tokenIndex].start = s;
                 while(doc[pos+1] != ',') { // ','만날때까지
-                    if(doc[pos+1] == '}') { // 만약 ','를 만나지 않았는데 '}'를
- 만난다면 마지막이 개행문자 제거를 위해 pos--
-                        pos--;
+                    if(doc[pos+1] == '}') { // 만약 ','를 만나지 않았는데 '}'를 만난다면 마지막이 개행문자 제거를 위해 pos--
+                        pos--; 
                         break;
                     } else pos++;
                 }
@@ -163,6 +162,7 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt)
                 pos++;
                 tokenIndex++;
                 break;
+           
             
 
             default:
