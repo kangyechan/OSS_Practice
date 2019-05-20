@@ -11,7 +11,8 @@ easily integrated into resource-limited or embedded projects",
 "frameworks": "*",
 "platforms": "*",
 "examples": [
-"example/*.c"
+"example/*.c",
+"hmm"
 ],
 "exclude": "test"
 }
