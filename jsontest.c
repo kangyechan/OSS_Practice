@@ -179,6 +179,20 @@ void freeJson(JSON *json, int bigcnt){
             free(json->tokens[i].string);
     }
 }
+
+void printResult(JSON *json, int bigcnt) {
+    char *typeToStr;
+    printf("*********** All Tokens ***********\n");
+    for(int i = 0; i<bigcnt;i++){
+        if(json->tokens[i].type == 0) typeToStr = "JSMN_UNDEFINED";
+        else if(json->tokens[i].type == 1) typeToStr = "JSMN_OBJECT";
+        else if(json->tokens[i].type == 2) typeToStr ="JSMN_ARRAY";
+        else if(json->tokens[i].type == 3) typeToStr ="JSMN_STRING";
+        else typeToStr = "JSMN_PRIMITIVE";
+        printf("[%d] %s (size = %d, %d~%d, %s) \n", i+1, json->tokens[i].string, json->tokens[i].size, json->tokens[i].start, json->tokens[i].end, typeToStr);
+    }
+}
+
 int main(int argc, char** argv)
 {
     int filesize=0;
@@ -193,11 +207,8 @@ int main(int argc, char** argv)
     JSON json = {0, };
 
     json_parse(doc, filesize, &json, &bigcnt);
-
-    //printing
-    for(int i = 0; i<bigcnt;i++){
-        printf("[%d] %s (size = %d, %d~%d, %u) \n", i+1, json.tokens[i].string, json.tokens[i].size, json.tokens[i].start, json.tokens[i].end, json.tokens[i].type);
-    }
+    
+    printResult(&json, bigcnt);
 
     freeJson(&json, bigcnt);
 
