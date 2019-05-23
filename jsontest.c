@@ -189,7 +189,8 @@ void printResult(JSON *json, int bigcnt) {
         else if(json->tokens[i].type == 2) typeToStr ="JSMN_ARRAY";
         else if(json->tokens[i].type == 3) typeToStr ="JSMN_STRING";
         else typeToStr = "JSMN_PRIMITIVE";
-        printf("[%d] %s (size = %d, %d~%d, %s) \n", i+1, json->tokens[i].string, json->tokens[i].size, json->tokens[i].start, json->tokens[i].end, typeToStr);
+        printf("[%d] %s (size = %d, %d~%d, %s) \n", i+1, json->tokens[i].string
+	, json->tokens[i].size, json->tokens[i].start, json->tokens[i].end, typeToStr);
     }
 }
 
