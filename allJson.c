@@ -100,10 +100,12 @@ void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
             break;
 
         case '[':
+            arrSize++;  
             array_parse(doc, json, &pos, &tokenIndex);
             break;
 
         case '{':
+            arrSize++;  
             object_parse(doc, json, &pos, &tokenIndex);
             break;
 
@@ -190,10 +192,12 @@ void object_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
             break;
 
         case '[':
+            objSize++;
             array_parse(doc, json, &pos, &tokenIndex);
             break;
 
         case '{':
+            objSize++;
             object_parse(doc, json, &pos, &tokenIndex);
             break;
 
@@ -283,13 +287,8 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt)
             break;
 
         case '{':
-        if(pos == 0){
-            pos++;
-            break;
-        } else {
             object_parse(doc, json, &pos, &tokenIndex);
             break;
-        }
 
         case '-': case '0': case '1': case '2':
         case '3': case '4': case '5': case '6':
