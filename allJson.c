@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define TOKEN_COUNT 50
+#define TOKEN_COUNT 1024
 
 typedef enum
 {
@@ -62,6 +62,9 @@ char *readfile(char *filename, int *filesize)
     return buffer;
 }
 
+void array_parse(char*, JSON*, int*, int*);
+void object_parse(char*, JSON*, int*, int*);
+
 void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
 {
     int pos = *oriPos;
@@ -94,6 +97,14 @@ void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
             memset(json->tokens[tokenIndex].string, 0, e - s + 1);
             memcpy(json->tokens[tokenIndex].string, doc + s, e - s);
             tokenIndex++; //increase tokenIndex for element found insdie array
+            break;
+
+        case '[':
+            array_parse(doc, json, &pos, &tokenIndex);
+            break;
+
+        case '{':
+            object_parse(doc, json, &pos, &tokenIndex);
             break;
 
         case '-': case '0': case '1': case '2':
