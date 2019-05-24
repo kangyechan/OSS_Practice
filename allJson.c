@@ -171,18 +171,25 @@ void object_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
         {
         case '"':
             json->tokens[tokenIndex].type = STRING; // token.type is STRING
-            s = pos + 1;                            // the word starts after "
+            s = pos + 1;                          // the word starts after "
+            pos++;
             json->tokens[tokenIndex].start = s;     // token.start = s
-            while (doc[pos + 1] != '"')
+            while (doc[pos] != '"')
             { // increase pos until it meets "
                 pos++;
             }
-            e = ++pos;                         // the word ends when doc[pos] meets ". (includes last ")
+            e = pos;                         // the word ends when doc[pos] meets ". (includes last ")
             json->tokens[tokenIndex].end = e;  // token.end = e
-            json->tokens[tokenIndex].size = 1; //if : is coming right after "" {size = 1}
-            if (doc[pos + 1] != ':')
-            { // else {size = 0}
-                json->tokens[tokenIndex].size = 0;
+            json->tokens[tokenIndex].size = 0; //if : is coming right after "" {size = 1}
+            while (doc[pos] != ':' && doc[pos] != '\n')
+            {
+                pos++;
+            }
+            if (doc[pos] == ':')
+            {
+                json->tokens[tokenIndex].size = 1;
+            }
+            else {
                 objSize++;
             }
             json->tokens[tokenIndex].string = (char *)malloc(e - s + 1);
@@ -257,20 +264,24 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt)
         {
         case '"':
             json->tokens[tokenIndex].type = STRING; // token.type is STRING
-            s = pos + 1;                            // the word starts after "
+            s = pos + 1;   
+            pos++;                                   // the word starts after "
             json->tokens[tokenIndex].start = s;     // token.start = s
-            while (doc[pos + 1] != '"')
+            while (doc[pos] != '"')
             { // increase pos until it meets "
                 pos++;
             }
 
-            e = ++pos;                        // the word ends when doc[pos] meets ". (includes last ")
+            e = pos;                        // the word ends when doc[pos] meets ". (includes last ")
             json->tokens[tokenIndex].end = e; // token.end = e
 
-            json->tokens[tokenIndex].size = 1; //if : is coming right after "" {size = 1}
-            if (doc[pos + 1] != ':')
+            json->tokens[tokenIndex].size = 0; //if : is coming right after "" {size = 1}
+            while (doc[pos] != ':' && doc[pos] != '\n') {
+                pos++;
+            }
+            if (doc[pos] != ':')
             { // else {size = 0}
-                json->tokens[tokenIndex].size = 0;
+                json->tokens[tokenIndex].size = 1;
             }
 
             //put doc[s]~doc[e+1] in token.string
