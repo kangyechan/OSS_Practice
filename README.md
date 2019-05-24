@@ -10,12 +10,15 @@
 	This program is to parse json file and print each tokens, with size, position and type of each.
 
 # Prerequisites
-	Json file(.json format) should be prepared.
+	any Json file(.json format), and allJson.c should be prepared.
 
 # Run
 	repeat below: 
 		gcc -o json.exe allJson.c
 		json.exe filename.json
+# When to use
+	This program is useful when
 
-
+# for more help
+	
 
