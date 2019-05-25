@@ -24,6 +24,34 @@ typedef struct _JSON {
     tok_t tokens[TOKEN_COUNT];
 } JSON;
 
+char *readfile(char*, int*);
+void array_parse(char*, JSON*, int*, int*);
+void object_parse(char*, JSON*, int*, int*);
+void json_parse(char*, int, JSON*, int*);
+void freeJson(JSON*, int);
+void printResult(JSON*, int);
+
+int main(int argc, char **argv) {
+    int filesize = 0;
+    char *doc = readfile(argv[1], &filesize);
+    int bigcnt = 0; //total count including objects in value.
+
+    if (doc == NULL) {
+        printf("NULL");
+        return -1;
+    }
+
+    JSON json = {0};
+
+    json_parse(doc, filesize, &json, &bigcnt);
+
+    printResult(&json, bigcnt);
+
+    freeJson(&json, bigcnt);
+
+    return 0;
+}
+
 char *readfile(char *filename, int *filesize) {
     FILE *fp = fopen(filename, "r");
 
@@ -55,9 +83,6 @@ char *readfile(char *filename, int *filesize) {
 
     return buffer;
 }
-
-void array_parse(char*, JSON*, int*, int*);
-void object_parse(char*, JSON*, int*, int*);
 
 void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex) {
     int pos = *oriPos;
@@ -325,25 +350,3 @@ void printResult(JSON *json, int bigcnt) {
         printf("[%d] %s (size = %d, %d~%d, %s) \n", i + 1, json->tokens[i].string, json->tokens[i].size, json->tokens[i].start, json->tokens[i].end, typeToStr);
     }
 }
-
-int main(int argc, char **argv) {
-    int filesize = 0;
-    char *doc = readfile(argv[1], &filesize);
-    int bigcnt = 0; //total count including objects in value.
-
-    if (doc == NULL) {
-        printf("NULL");
-        return -1;
-    }
-
-    JSON json = {0};
-
-    json_parse(doc, filesize, &json, &bigcnt);
-
-    printResult(&json, bigcnt);
-
-    freeJson(&json, bigcnt);
-
-    return 0;
-}
- 
