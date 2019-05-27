@@ -17,6 +17,9 @@
 		gcc -o json.exe allJson.c
 		json.exe filename.json
 # When to use
-	We can make json file with the foods that are in refrigerator. And then this program can provide the list of food that you can make with those ingredients. It can sort out some ingredients that should be refilled, or should be used quickly. By using this program, we can manage the ingredients. 
+	We can make json file with the foods that are in refrigerator. 
+	And then this program can provide the list of food that you can make with those ingredients.
+	It can sort out some ingredients that should be refilled, or should be used quickly. 
+	By using this program, we can manage the ingredients. 
 
 
