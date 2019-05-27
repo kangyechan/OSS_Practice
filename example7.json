@@ -1,0 +1,13 @@
+{"menu": {
+    "header": "SVG Viewer",
+    "items": [
+        {"id": "Open"},
+        {"id": "OpenNew", "label": "Open New"},
+        null,
+        {"id": "ViewSource", "label": "View Source"},
+        {"id": "SaveAs", "label": "Save As"},
+        null,
+        {"id": "Help"},
+        {"id": "About", "label": "About Adobe CVG Viewer..."}
+    ]
+}}

@@ -1,0 +1,31 @@
+{
+
+    "name": "moogii",
+
+    "age": 5,
+
+    "isProgrammer": true,
+
+    "skills": [
+
+        {
+
+            "language": "JAVA",
+
+            "level": 1
+
+        },
+
+        {
+
+            "language": "Python",
+
+            "level": 2
+
+        }
+
+    ],
+
+    "workingDays": ["Mon", "T", "W", "T", "F", "S", "S"]
+
+}
