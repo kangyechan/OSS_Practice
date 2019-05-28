@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #define TOKEN_COUNT 1024
 
-typedef enum
-{
+typedef enum {
     UNDEFINED = 0,
     OBJECT = 1,
     ARRAY = 2,
@@ -13,8 +12,7 @@ typedef enum
 
 } type_t;
 
-typedef struct
-{
+typedef struct {
     type_t type;
     int start;
     int end;
@@ -22,17 +20,42 @@ typedef struct
     char *string;
 } tok_t;
 
-typedef struct _JSON
-{
+typedef struct _JSON {
     tok_t tokens[TOKEN_COUNT];
 } JSON;
 
-char *readfile(char *filename, int *filesize)
-{
+char *readfile(char*, int*);
+void array_parse(char*, JSON*, int*, int*);
+void object_parse(char*, JSON*, int*, int*);
+void json_parse(char*, int, JSON*, int*);
+void freeJson(JSON*, int);
+void printResult(JSON*, int);
+
+int main(int argc, char **argv) {
+    int filesize = 0;
+    char *doc = readfile(argv[1], &filesize);
+    int bigcnt = 0; //total count including objects in value.
+
+    if (doc == NULL) {
+        printf("NULL");
+        return -1;
+    }
+
+    JSON json = {0};
+
+    json_parse(doc, filesize, &json, &bigcnt);
+
+    printResult(&json, bigcnt);
+
+    freeJson(&json, bigcnt);
+
+    return 0;
+}
+
+char *readfile(char *filename, int *filesize) {
     FILE *fp = fopen(filename, "r");
 
-    if (fp == NULL)
-    {
+    if (fp == NULL) {
         printf("WRONG FILENAME\n");
         return NULL;
     }
@@ -47,8 +70,7 @@ char *readfile(char *filename, int *filesize)
     buffer = (char *)malloc(size + 1);
     memset(buffer, 0, size + 1);
 
-    if (fread(buffer, 1, size, fp) < 1)
-    {
+    if (fread(buffer, 1, size, fp) < 1) {
         *filesize = 0;
         free(buffer);
         fclose(fp);
@@ -62,11 +84,7 @@ char *readfile(char *filename, int *filesize)
     return buffer;
 }
 
-void array_parse(char*, JSON*, int*, int*);
-void object_parse(char*, JSON*, int*, int*);
-
-void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
-{
+void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex) {
     int pos = *oriPos;
     int tokenIndex = *oriTokenIndex;
     int s, e;
@@ -76,18 +94,15 @@ void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
     s = pos;                                 // the token starts at '['
     json->tokens[arraytokenIndex].start = s; // token.start = s
     int arrSize = 0;
-    while (doc[pos] != ']')
-    { // increase pos until it meets ]
+    while (doc[pos] != ']') { // increase pos until it meets ]
         pos++;
-        switch (doc[pos])
-        {
+        switch (doc[pos]) {
         case '"':
             arrSize++;                              //increase size for each element found. This is array size.
             json->tokens[tokenIndex].type = STRING; // token.type is STRING
             s = pos + 1;                            // the word starts after "
             json->tokens[tokenIndex].start = s;     // token.start = s
-            while (doc[pos + 1] != '"')
-            { // increase pos until it meets "
+            while (doc[pos + 1] != '"') {        // increase pos until it meets "
                 pos++;
             }
             e = ++pos;                         // the word ends when doc[pos] meets ". (includes last ")
@@ -117,14 +132,9 @@ void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
             json->tokens[tokenIndex].type = PRIMITIVE;
             s = pos;
             json->tokens[tokenIndex].start = s;
-            while (doc[pos + 1] != ',')
-            { // ','만날때까지
-                if (doc[pos + 1] == '\n')
-                { // 만약 ','를 만나지 않았는데 '\n'를 만난다면 끝남
-                    break;
-                }
-                else
-                    pos++;
+            while (doc[pos + 1] != ',') { // ','만날때까지
+                if (doc[pos + 1] == '\n' || doc[pos+1] == '}' || doc[pos+1] == ']') break;
+                else pos++;
             }
             e = ++pos; // the word ends when doc[pos] meets ',' or NULL
             json->tokens[tokenIndex].end = e;
@@ -132,7 +142,7 @@ void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
             json->tokens[tokenIndex].string = (char *)malloc(e - s + 1);
             memset(json->tokens[tokenIndex].string, 0, e - s + 1);
             memcpy(json->tokens[tokenIndex].string, doc + s, e - s);
-            pos++;
+            if(doc[pos] != '}' && doc[pos] != ']') pos++;
             tokenIndex++;
             break;
 
@@ -152,8 +162,7 @@ void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
     *oriPos = pos;
 }
 
-void object_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
-{
+void object_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex) {
     int pos = *oriPos;
     int tokenIndex = *oriTokenIndex;
     int s, e;
@@ -164,29 +173,24 @@ void object_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
     json->tokens[objtokenIndex].start = s;  // token.start = s
     int objSize = 0;
 
-    while (doc[pos] != '}')
-    { // increase pos until it meets }
+    while (doc[pos] != '}') { // increase pos until it meets }
         pos++;
-        switch (doc[pos])
-        {
+        switch (doc[pos]) {
         case '"':
             json->tokens[tokenIndex].type = STRING; // token.type is STRING
             s = pos + 1;                          // the word starts after "
             pos++;
             json->tokens[tokenIndex].start = s;     // token.start = s
-            while (doc[pos] != '"')
-            { // increase pos until it meets "
+            while (doc[pos] != '"') { // increase pos until it meets "
                 pos++;
             }
             e = pos;                         // the word ends when doc[pos] meets ". (includes last ")
             json->tokens[tokenIndex].end = e;  // token.end = e
             json->tokens[tokenIndex].size = 0; //if : is coming right after "" {size = 1}
-            while (doc[pos] != ':' && doc[pos] != '\n')
-            {
+            while (doc[pos] != ':' && doc[pos] != '\n' && doc[pos] != ',') {
                 pos++;
             }
-            if (doc[pos] == ':')
-            {
+            if (doc[pos] == ':') {
                 json->tokens[tokenIndex].size = 1;
             }
             else {
@@ -215,14 +219,11 @@ void object_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
             json->tokens[tokenIndex].type = PRIMITIVE;
             s = pos;
             json->tokens[tokenIndex].start = s;
-            while (doc[pos + 1] != ',')
-            { // ','만날때까지
-                if (doc[pos + 1] == '\n')
-                { // 만약 ','를 만나지 않았는데 '\n'를 만난다면 끝남
+            while (doc[pos + 1] != ',') { // ','만날때까지
+                if (doc[pos + 1] == '\n' || doc[pos+1] == '}' || doc[pos+1] == ']') { // 만약 ','를 만나지 않았는데 '\n'를 만난다면 끝남
                     break;
                 }
-                else
-                    pos++;
+                else pos++;
             }
             objSize++;
             e = ++pos; // the word ends when doc[pos] meets ',' or NULL
@@ -231,7 +232,7 @@ void object_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
             json->tokens[tokenIndex].string = (char *)malloc(e - s + 1);
             memset(json->tokens[tokenIndex].string, 0, e - s + 1);
             memcpy(json->tokens[tokenIndex].string, doc + s, e - s);
-            pos++;
+            if(doc[pos] != '}' && doc[pos] != ']') pos++;
             tokenIndex++;
             break;
         default:
@@ -251,24 +252,20 @@ void object_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex)
     *oriPos = pos;
 }
 
-void json_parse(char *doc, int size, JSON *json, int *b_cnt)
-{
+void json_parse(char *doc, int size, JSON *json, int *b_cnt) {
     int cnt = 0;
     int pos = 0;        //for checking position in doc.
     int e, s;           //ending, starting position for each token
     int tokenIndex = 0; //index for token
 
-    while (pos < size)
-    {
-        switch (doc[pos])
-        {
+    while (pos < size) {
+        switch (doc[pos]) {
         case '"':
             json->tokens[tokenIndex].type = STRING; // token.type is STRING
             s = pos + 1;   
             pos++;                                   // the word starts after "
             json->tokens[tokenIndex].start = s;     // token.start = s
-            while (doc[pos] != '"')
-            { // increase pos until it meets "
+            while (doc[pos] != '"') { // increase pos until it meets "
                 pos++;
             }
 
@@ -276,11 +273,10 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt)
             json->tokens[tokenIndex].end = e; // token.end = e
 
             json->tokens[tokenIndex].size = 0; //if : is coming right after "" {size = 1}
-            while (doc[pos] != ':' && doc[pos] != '\n') {
+            while (doc[pos] != ':' && doc[pos] != '\n' && doc[pos] != ',') {
                 pos++;
             }
-            if (doc[pos] != ':')
-            { // else {size = 0}
+            if (doc[pos] != ':') { // else {size = 0}
                 json->tokens[tokenIndex].size = 1;
             }
 
@@ -308,14 +304,9 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt)
             json->tokens[tokenIndex].type = PRIMITIVE;
             s = pos;
             json->tokens[tokenIndex].start = s;
-            while (doc[pos + 1] != ',')
-            { // ','만날때까지
-                if (doc[pos + 1] == '\n')
-                { // 만약 ','를 만나지 않았는데 '\n'를 만난다면 마지막이 이므로 pos를 증가시키지 않음
-                    break;
-                }
-                else
-                    pos++;
+            while (doc[pos + 1] != ',') { // ','만날때까지
+                if (doc[pos + 1] == '\n' || doc[pos+1] == '}' || doc[pos+1] == ']') break;
+                else pos++;
             }
             e = ++pos; // the word ends when doc[pos] meets ',' or NULL
             json->tokens[tokenIndex].end = e;
@@ -323,7 +314,7 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt)
             json->tokens[tokenIndex].string = (char *)malloc(e - s + 1);
             memset(json->tokens[tokenIndex].string, 0, e - s + 1);
             memcpy(json->tokens[tokenIndex].string, doc + s, e - s);
-            pos++;
+            if(doc[pos] != '}' && doc[pos] != ']') pos++;
             tokenIndex++;
             break;
 
@@ -335,21 +326,17 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt)
     *b_cnt = tokenIndex; //update bigcnt
 }
 
-void freeJson(JSON *json, int bigcnt)
-{
-    for (int i = 0; i < bigcnt; i++)
-    {
+void freeJson(JSON *json, int bigcnt) {
+    for (int i = 0; i < bigcnt; i++) {
         if (json->tokens[i].type == STRING)
             free(json->tokens[i].string);
     }
 }
 
-void printResult(JSON *json, int bigcnt)
-{
+void printResult(JSON *json, int bigcnt) {
     char *typeToStr;
     printf("*********** All Tokens ***********\n");
-    for (int i = 0; i < bigcnt; i++)
-    {
+    for (int i = 0; i < bigcnt; i++) {
         if (json->tokens[i].type == 0)
             typeToStr = "JSMN_UNDEFINED";
         else if (json->tokens[i].type == 1)
@@ -362,27 +349,4 @@ void printResult(JSON *json, int bigcnt)
             typeToStr = "JSMN_PRIMITIVE";
         printf("[%d] %s (size = %d, %d~%d, %s) \n", i + 1, json->tokens[i].string, json->tokens[i].size, json->tokens[i].start, json->tokens[i].end, typeToStr);
     }
-}
-
-int main(int argc, char **argv)
-{
-    int filesize = 0;
-    char *doc = readfile(argv[1], &filesize);
-    int bigcnt = 0; //total count including objects in value.
-
-    if (doc == NULL)
-    {
-        printf("NULL");
-        return -1;
-    }
-
-    JSON json = {0};
-
-    json_parse(doc, filesize, &json, &bigcnt);
-
-    printResult(&json, bigcnt);
-
-    freeJson(&json, bigcnt);
-
-    return 0;
 }
