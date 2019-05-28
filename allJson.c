@@ -133,7 +133,7 @@ void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex) {
             s = pos;
             json->tokens[tokenIndex].start = s;
             while (doc[pos + 1] != ',') { // ','만날때까지
-                if (doc[pos + 1] == '\n' || doc[pos+1] == '}' || doc[pos+1] == ']') break;
+                if (doc[pos + 1] == '\n' || doc[pos+1] == ']') break;
                 else pos++;
             }
             e = ++pos; // the word ends when doc[pos] meets ',' or NULL
@@ -142,7 +142,7 @@ void array_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex) {
             json->tokens[tokenIndex].string = (char *)malloc(e - s + 1);
             memset(json->tokens[tokenIndex].string, 0, e - s + 1);
             memcpy(json->tokens[tokenIndex].string, doc + s, e - s);
-            if(doc[pos] != '}' && doc[pos] != ']') pos++;
+            if(doc[pos] != ']') pos++;
             tokenIndex++;
             break;
 
@@ -187,7 +187,7 @@ void object_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex) {
             e = pos;                         // the word ends when doc[pos] meets ". (includes last ")
             json->tokens[tokenIndex].end = e;  // token.end = e
             json->tokens[tokenIndex].size = 0; //if : is coming right after "" {size = 1}
-            while (doc[pos] != ':' && doc[pos] != '\n' && doc[pos] != ',') {
+            while (doc[pos] != ':' && doc[pos] != '\n' && doc[pos] != ',' && doc[pos] != '}') {
                 pos++;
             }
             if (doc[pos] == ':') {
@@ -220,7 +220,7 @@ void object_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex) {
             s = pos;
             json->tokens[tokenIndex].start = s;
             while (doc[pos + 1] != ',') { // ','만날때까지
-                if (doc[pos + 1] == '\n' || doc[pos+1] == '}' || doc[pos+1] == ']') { // 만약 ','를 만나지 않았는데 '\n'를 만난다면 끝남
+                if (doc[pos + 1] == '\n' || doc[pos+1] == '}') { // 만약 ','를 만나지 않았는데 '\n'를 만난다면 끝남
                     break;
                 }
                 else pos++;
@@ -232,7 +232,7 @@ void object_parse(char *doc, JSON *json, int *oriPos, int *oriTokenIndex) {
             json->tokens[tokenIndex].string = (char *)malloc(e - s + 1);
             memset(json->tokens[tokenIndex].string, 0, e - s + 1);
             memcpy(json->tokens[tokenIndex].string, doc + s, e - s);
-            if(doc[pos] != '}' && doc[pos] != ']') pos++;
+            if(doc[pos] != '}') pos++;
             tokenIndex++;
             break;
         default:
