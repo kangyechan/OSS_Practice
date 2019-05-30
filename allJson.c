@@ -338,15 +338,15 @@ void printResult(JSON *json, int bigcnt) {
     printf("*********** All Tokens ***********\n");
     for (int i = 0; i < bigcnt; i++) {
         if (json->tokens[i].type == 0)
-            typeToStr = "JSMN_UNDEFINED";
+            typeToStr = "UNDEFINED";
         else if (json->tokens[i].type == 1)
-            typeToStr = "JSMN_OBJECT";
+            typeToStr = "OBJECT";
         else if (json->tokens[i].type == 2)
-            typeToStr = "JSMN_ARRAY";
+            typeToStr = "ARRAY";
         else if (json->tokens[i].type == 3)
-            typeToStr = "JSMN_STRING";
+            typeToStr = "STRING";
         else
             typeToStr = "JSMN_PRIMITIVE";
-        printf("[%d] %s (size = %d, %d~%d, %s) \n", i + 1, json->tokens[i].string, json->tokens[i].size, json->tokens[i].start, json->tokens[i].end, typeToStr);
+        printf("[%d] %s (size = %d, %d~%d, %s) \n", i , json->tokens[i].string, json->tokens[i].size, json->tokens[i].start, json->tokens[i].end, typeToStr);
     }
 }
