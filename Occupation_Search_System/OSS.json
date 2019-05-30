@@ -1,0 +1,127 @@
+
+
+  {
+    "company information" : [
+
+    {
+
+        "name": "SAMSUNG",
+
+        "salary": 4000,
+
+        "coding Test": true,
+
+        "type":[
+
+            "algorithm developer",
+
+            "",
+
+            ""
+
+        ]
+
+    
+
+    },
+
+    {
+
+        "name": "NAVER",
+
+        "salary": 3900,
+
+        "coding Test": true,
+
+        "type":[
+
+            "data analyst",
+
+            "web designer",
+
+            "DB manager",
+
+            "project manager"
+
+        ]
+
+    
+
+    },
+
+    {
+
+        "name": "Google",
+
+        "salary": 4500,
+
+        "coding Test": true,
+
+        "type":[
+
+            "data analyst",
+
+            "web designer",
+
+            "DB manager",
+
+            "project manager",
+
+            "algorithm developer",
+
+            "Deep learning Specialist"
+
+        ]
+
+    
+
+    },
+
+    {
+
+        "name": "TESLA",
+
+        "salary": 4600,
+
+        "coding Test": true,
+
+        "type":[
+
+            "ADAS developer",
+
+            "Deep learning Specialist",
+
+            "Algorithm Optimization Specialist"
+
+        ]
+
+    
+
+    },
+
+    {
+
+        "name": "IBM",
+
+        "salary": 4400,
+
+        "coding Test": true,
+
+        "type":[
+
+            "Server Manager",
+
+            "Big Data Specialist",
+
+            "DB manager"
+
+        ]
+
+    
+
+    }
+
+]
+
+}
+
