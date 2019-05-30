@@ -1,5 +1,5 @@
 # project name
-	Open sourse software team project for parsing JSON file.
+	Occupation Search System
 
 # Developers
 	GROUP 9
