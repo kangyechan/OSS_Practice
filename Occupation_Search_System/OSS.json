@@ -5,19 +5,22 @@
 
     {
 
-        "name": "SAMSUNG",
+        "name": "SAMSUNG Electronics",
+
+        ""
 
         "salary": 4000,
 
         "coding Test": true,
 
-        "type":[
+        "location": "Jamsil, Seoul",
 
-            "algorithm developer",
+        "positions":[
 
-            "",
+            "Algorithm Developer",
 
-            ""
+            "Intern"
+
 
         ]
 
@@ -33,15 +36,17 @@
 
         "coding Test": true,
 
-        "type":[
+        "location": "Jeongja-dong, Sungnamsi",
 
-            "data analyst",
+        "positions":[
 
-            "web designer",
+            "Data Analyst",
 
-            "DB manager",
+            "Web Designer",
 
-            "project manager"
+            "DB Manager",
+
+            "Project Manager"
 
         ]
 
@@ -53,21 +58,23 @@
 
         "name": "Google",
 
-        "salary": 4500,
+        "salary": 6200,
 
         "coding Test": true,
 
-        "type":[
+        "location": "Gangnam, Seoul",
 
-            "data analyst",
+        "positions":[
 
-            "web designer",
+            "Data Analyst",
 
-            "DB manager",
+            "Web Designer",
 
-            "project manager",
+            "DB Manager",
 
-            "algorithm developer",
+            "Project Manager",
+
+            "Algorithm Developer",
 
             "Deep learning Specialist"
 
@@ -79,17 +86,45 @@
 
     {
 
-        "name": "TESLA",
+        "name": "Amazon",
 
-        "salary": 4600,
+        "salary": 7000,
 
         "coding Test": true,
 
-        "type":[
+        "location": "1 Hacker Way Menlo Park, California",
 
-            "ADAS developer",
+        "positions":[
 
-            "Deep learning Specialist",
+            "Server Manager",
+
+            "Big Data Specialist",
+
+            "DB Manager",
+
+            "UX Specialist",
+
+            "Web Secuity Specialist"
+
+        ]
+
+    
+
+    },
+
+    {
+
+        "name": "TESLA",
+
+        "salary": 6300,
+
+        "coding Test": true,
+
+        "positions":[
+
+            "ADAS Developer",
+
+            "Deep Leaning Specialist",
 
             "Algorithm Optimization Specialist"
 
@@ -103,17 +138,47 @@
 
         "name": "IBM",
 
-        "salary": 4400,
+        "salary": 5900,
 
         "coding Test": true,
 
-        "type":[
+        "location": "3500 Deer Creek Road Palo Alto, California",
+
+        "positions":[
 
             "Server Manager",
 
             "Big Data Specialist",
 
-            "DB manager"
+            "DB Manager"
+
+        ]
+
+    
+
+    },
+
+    {
+
+        "name": "Facebook",
+
+        "salary": 6100,
+
+        "coding Test": true,
+
+        "location": "1 Hacker Way Menlo Park, California",
+
+        "positions":[
+
+            "Server Manager",
+
+            "Big Data Specialist",
+
+            "DB Manager",
+
+            "UX Specialist",
+
+            "Web Secuity Specialist"
 
         ]
 
