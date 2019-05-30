@@ -1,192 +1,95 @@
-
-
-  {
-    "company information" : [
-
-    {
-
-        "name": "SAMSUNG Electronics",
-
-        ""
-
-        "salary": 4000,
-
-        "coding Test": true,
-
-        "location": "Jamsil, Seoul",
-
-        "positions":[
-
-            "Algorithm Developer",
-
-            "Intern"
-
-
-        ]
-
-    
-
-    },
-
-    {
-
-        "name": "NAVER",
-
-        "salary": 3900,
-
-        "coding Test": true,
-
-        "location": "Jeongja-dong, Sungnamsi",
-
-        "positions":[
-
-            "Data Analyst",
-
-            "Web Designer",
-
-            "DB Manager",
-
-            "Project Manager"
-
-        ]
-
-    
-
-    },
-
-    {
-
-        "name": "Google",
-
-        "salary": 6200,
-
-        "coding Test": true,
-
-        "location": "Gangnam, Seoul",
-
-        "positions":[
-
-            "Data Analyst",
-
-            "Web Designer",
-
-            "DB Manager",
-
-            "Project Manager",
-
-            "Algorithm Developer",
-
-            "Deep learning Specialist"
-
-        ]
-
-    
-
-    },
-
-    {
-
-        "name": "Amazon",
-
-        "salary": 7000,
-
-        "coding Test": true,
-
-        "location": "1 Hacker Way Menlo Park, California",
-
-        "positions":[
-
-            "Server Manager",
-
-            "Big Data Specialist",
-
-            "DB Manager",
-
-            "UX Specialist",
-
-            "Web Secuity Specialist"
-
-        ]
-
-    
-
-    },
-
-    {
-
-        "name": "TESLA",
-
-        "salary": 6300,
-
-        "coding Test": true,
-
-        "positions":[
-
-            "ADAS Developer",
-
-            "Deep Leaning Specialist",
-
-            "Algorithm Optimization Specialist"
-
-        ]
-
-    
-
-    },
-
-    {
-
-        "name": "IBM",
-
-        "salary": 5900,
-
-        "coding Test": true,
-
-        "location": "3500 Deer Creek Road Palo Alto, California",
-
-        "positions":[
-
-            "Server Manager",
-
-            "Big Data Specialist",
-
-            "DB Manager"
-
-        ]
-
-    
-
-    },
-
-    {
-
-        "name": "Facebook",
-
-        "salary": 6100,
-
-        "coding Test": true,
-
-        "location": "1 Hacker Way Menlo Park, California",
-
-        "positions":[
-
-            "Server Manager",
-
-            "Big Data Specialist",
-
-            "DB Manager",
-
-            "UX Specialist",
-
-            "Web Secuity Specialist"
-
-        ]
-
-    
-
-    }
-
-]
-
+{
+    "company information": [
+        {
+            "name": "SAMSUNG Electronics",
+            "size": "Large",
+            "salary": 4000,
+            "coding Test": true,
+            "location": "Jamsil, Seoul",
+            "positions": [
+                "Algorithm Developer",
+                "Intern"
+            ]
+        },
+        {
+            "name": "NAVER",
+            "size": "Large",
+            "salary": 3900,
+            "coding Test": true,
+            "location": "Jeongja-dong, Sungnamsi",
+            "positions": [
+                "Data Analyst",
+                "Web Designer",
+                "DB Manager",
+                "Project Manager",
+                "Machine Learning Specialist"
+            ]
+        },
+        {
+            "name": "Google",
+            "size": "Large",
+            "salary": 6200,
+            "coding Test": true,
+            "location": "Gangnam, Seoul",
+            "positions": [
+                "Data Analyst",
+                "Web Designer",
+                "DB Manager",
+                "Project Manager",
+                "Algorithm Developer",
+                "Deep learning Specialist"
+            ]
+        },
+        {
+            "name": "Amazon",
+            "size": "Large",
+            "salary": 7000,
+            "coding Test": true,
+            "location": "Seattle, Washington",
+            "positions": [
+                "Server Manager",
+                "Big Data Specialist",
+                "DB Manager",
+                "UX Specialist",
+                "Web Secuity Specialist"
+            ]
+        },
+        {
+            "name": "TESLA",
+            "size": "Large",
+            "salary": 6300,
+            "coding Test": true,
+            "positions": [
+                "ADAS Developer",
+                "Deep Leaning Specialist",
+                "Algorithm Optimization Specialist"
+            ]
+        },
+        {
+            "name": "IBM",
+            "size": "Large",
+            "salary": 5900,
+            "coding Test": true,
+            "location": "3500 Deer Creek Road Palo Alto, California",
+            "positions": [
+                "Server Manager",
+                "Big Data Specialist",
+                "DB Manager"
+            ]
+        },
+        {
+            "name": "Facebook",
+            "size": "Large",
+            "salary": 6100,
+            "coding Test": true,
+            "location": "1 Hacker Way Menlo Park, California",
+            "positions": [
+                "Server Manager",
+                "Big Data Specialist",
+                "DB Manager",
+                "UX Specialist",
+                "Web Secuity Specialist"
+            ]
+        }
+    ]
 }
-
