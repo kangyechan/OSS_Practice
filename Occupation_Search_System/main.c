@@ -47,6 +47,7 @@ int main(int argc, char **argv) {
             searchBySize(companies, companyCount);
             break;
         case 3:
+            searchBySalary(companies, companyCount);
             break;
         case 4:
             break;
