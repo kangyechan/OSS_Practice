@@ -405,7 +405,7 @@ void searchBySize(Company *companies, int count){
     for (int i = 0; i < count; i++) {
     // printf("%s",companies[i].name);
 
-
+            //convert size number to string equivalent
             if (companies[i].size == 1){
                 sizeToStr = "Large";
             }
@@ -418,7 +418,7 @@ void searchBySize(Company *companies, int count){
             else{
                 sizeToStr = "Startup";
             }
-        if(!strcmp(sizeToStr,size)){
+        if(!strcmp(sizeToStr,size)){ //if user input and company size are equal
             printf("\r\n[%d] %s \r\n", i + 1, companies[i].name);
             printf("Size : %s \r\n", sizeToStr);
             printf("Recruiting # : %d \r\n", companies[i].recruitNum);
