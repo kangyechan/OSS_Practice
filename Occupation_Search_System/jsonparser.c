@@ -430,7 +430,7 @@ void searchBySize(Company *companies, int count){
         
     printf("Enter number of company for more information: ");
     scanf("%d", &selectedComapny);
-            printf("\r\n[%d] %s \r\n", i + 1, companies[selectedComapny-1].name);
+            printf("\r\n%s \r\n", companies[selectedComapny-1].name);
             printf("\r\nRecruiting # : %d \r\n", companies[selectedComapny-1].recruitNum);
             printf("Coding Test : %s \r\n", companies[selectedComapny-1].coding);
             printf("Salary : %d \r\n", companies[selectedComapny-1].salary);
