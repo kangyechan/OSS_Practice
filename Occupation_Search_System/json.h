@@ -53,8 +53,6 @@ typedef struct _Company {
     char positions[10][30];
 } Company;
 
-// Company companies[100];
-
 
 char *readfile(char*, int*);
 int fileCheck(char*, char*);
