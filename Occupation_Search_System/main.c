@@ -6,9 +6,11 @@ int main(int argc, char **argv) {
     char *doc;
     int bigcnt = 0; //total count including objects in value.
     int selectMenu;
+    int companyCount=0;
+    // Company *companies= malloc(sizeof(Company)*100);
 
     JSON json = {0};
-    Company companies = {0};
+    Company companies[100];
 
     while(selectMenu < 8) {
         printf("\nHello!! Welcome to the world of Occupation Search System.\n");
@@ -34,12 +36,13 @@ int main(int argc, char **argv) {
             fileCheck(fileName, doc); // 파일 내용 없으면 에러
             json_parse(doc, filesize, &json, &bigcnt); // 파서 시작
             printResult(&json, bigcnt); // 파서 출력
+            makeCompanyTokens(&json, companies, bigcnt, &companyCount);// 파서결과를 Company Array에 저장
+            // printCompanies(&companies, companyCount);
+            freeJson(&json, bigcnt); // 토큰 free
             break;
         case 2:
-            makeCompanyTokens(&json, &companies, bigcnt);// 파서결과를 Company Array에 저장
             break;
         case 3:
-            freeJson(&json, bigcnt); // 토큰 free
             break;
         case 4:
             break;
@@ -50,6 +53,8 @@ int main(int argc, char **argv) {
         case 7:
          printf("OK. Bye! :)\n");
             break;
+        case 8:
+            return 0;
         default:
             break;
         }

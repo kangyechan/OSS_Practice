@@ -49,10 +49,12 @@ typedef struct _Company {
     int recruitNum;
     char *coding;
     char *location;
+    int positionCount;
     char positions[10][30];
 } Company;
 
-Company companies[TOKEN_COUNT];
+// Company companies[100];
+
 
 char *readfile(char*, int*);
 int fileCheck(char*, char*);
@@ -61,4 +63,5 @@ void object_parse(char*, JSON*, int*, int*);
 void json_parse(char*, int, JSON*, int*);
 void freeJson(JSON*, int);
 void printResult(JSON*, int);
-void makeCompanyTokens(JSON*, Company*, int);
+void makeCompanyTokens(JSON*, Company*, int, int*);
+void printCompanies(Company*, int);

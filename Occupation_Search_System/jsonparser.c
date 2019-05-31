@@ -251,67 +251,89 @@ void printResult(JSON *json, int bigcnt) {
 }
 
 
-void makeCompanyTokens(JSON *json, Company *companies, int bigcnt){
-    int companyCnt=0;
+void makeCompanyTokens(JSON *json, Company *companies, int bigcnt, int *companyCount){
     bool companyInfoStart = false;
-    for(int i = 0; i<bigcnt; i++){
+    for(int i = 0; i<=bigcnt; i++){
         // printf("%s, %d \r\n", json->tokens[i].string, json->tokens[i].size);
+        printf("%d of %d \r\n", i, bigcnt);
 
         if(!strcmp(json->tokens[i].string, "company information")){
             //when token String equals company info we start saving the information
             companyInfoStart = true;
         }
-
         //read and save the info
         if(companyInfoStart){
             if(!strcmp(json->tokens[i].string, "name")){
-                companies[companyCnt].name = json->tokens[i+1].string;
-                printf("\r\n\r\nName: %s \r\n", companies[companyCnt].name);
+                companies[*companyCount].name = json->tokens[i+1].string;
+                printf("\r\n\r\ncmpCnt %d\r\n", *companyCount);
 
+                printf("Name: %s \r\n", companies[*companyCount].name);
+                
             }else if(!strcmp(json->tokens[i].string, "size")){
                 if(!strcmp(json->tokens[i+1].string, "Large")){
-                    companies[companyCnt].size = LARGE;
+                    companies[*companyCount].size = LARGE;
                 }else if(!strcmp(json->tokens[i+1].string, "Medium")){
-                    companies[companyCnt].size = MEDIUM;
+                    companies[*companyCount].size = MEDIUM;
                 }else if(!strcmp(json->tokens[i+1].string, "Small")){
-                    companies[companyCnt].size = SMALL;
+                    companies[*companyCount].size = SMALL;
                 }else if(!strcmp(json->tokens[i+1].string, "Startup")){
-                    companies[companyCnt].size = STARTUP;
+                    companies[*companyCount].size = STARTUP;
                 }
-                printf("Size : %d \r\n", companies[companyCnt].size);
+                printf("Size : %d \r\n", companies[*companyCount].size);
 
             }else if(!strcmp(json->tokens[i].string, "salary")){
-                companies[companyCnt].salary = atoi(json->tokens[i+1].string);
-                printf("Salary : %d \r\n", companies[companyCnt].salary);
+                companies[*companyCount].salary = atoi(json->tokens[i+1].string);
+                printf("Salary : %d \r\n", companies[*companyCount].salary);
 
             }else if(!strcmp(json->tokens[i].string, "coding Test")){
-                companies[companyCnt].coding = json->tokens[i+1].string;
-                printf("Coding Test : %s \r\n", companies[companyCnt].coding);
+                companies[*companyCount].coding = json->tokens[i+1].string;
+                printf("Coding Test : %s \r\n", companies[*companyCount].coding);
 
             }else if(!strcmp(json->tokens[i].string, "location")){
-                companies[companyCnt].location = json->tokens[i+1].string;
-                printf("Location is : %s \r\n", companies[companyCnt].location);
+                companies[*companyCount].location = json->tokens[i+1].string;
+                printf("Location is : %s \r\n", companies[*companyCount].location);
 
             }else if(!strcmp(json->tokens[i].string, "recruiting")){
-                companies[companyCnt].recruitNum = atoi(json->tokens[i+1].string);
-                printf("Recruiting %d People \r\n", companies[companyCnt].recruitNum);
+                companies[*companyCount].recruitNum = atoi(json->tokens[i+1].string);
+                printf("Recruiting %d People \r\n", companies[*companyCount].recruitNum);
 
             }else if(!strcmp(json->tokens[i].string, "positions")){
                 int positionCount = json->tokens[i+1].size;
-
+                companies[*companyCount].positionCount = positionCount;
+                printf("position count %d \r\n",companies[*companyCount].positionCount);
                 for(int j=0; j<positionCount; j++){
-                    strcpy(companies[companyCnt].positions[j],json->tokens[i+2+j].string);
-                    printf("%s \r\n", companies[companyCnt].positions[j]);
+                    strcpy(companies[*companyCount].positions[j],json->tokens[i+2+j].string);
+                    printf("%d, %s \r\n", j,companies[*companyCount].positions[j]);
                     // printf("%s \r\n", json->tokens[i+2+j].string);
+                        // i++;
 
                 }
 
 
-                companyCnt++;//positions is the last info of a company that appears
+                *companyCount+=1;//positions is the last info of a company that appears
                 //so after reading this we increment the value
             }
-            
+                            // i++;
+
         }
     }
 
+}
+
+void printCompanies(Company *companies, int count) {
+    char *typeToStr;
+    printf("\n*********************** Companies *************************\n");
+    for (int i = 0; i < count; i++) {
+        if (companies[i].size == 1)
+            typeToStr = "Large";
+        else if (companies[i].size == 2)
+            typeToStr = "Medium";
+        else if (companies[i].size == 3)
+            typeToStr = "Small";
+        else if (companies[i].size == 4)
+            typeToStr = "Startup";
+
+        printf("[%d] %s \r\n", i + 1, companies[i].name);
+    }
+    printf("**********************************************************\n");
 }
