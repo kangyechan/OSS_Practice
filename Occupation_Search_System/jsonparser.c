@@ -249,3 +249,55 @@ void printResult(JSON *json, int bigcnt) {
     }
     printf("**********************************************************\n");
 }
+
+
+void makeCompanyTokens(JSON *json, Company *companies, int bigcnt){
+    int companyCnt=0;
+    bool companyInfoStart = false;
+    for(int i = 0; i<bigcnt; i++){
+        // printf("%s, %d \r\n", json->tokens[i].string, json->tokens[i].size);
+
+        if(!strcmp(json->tokens[i].string, "company information")){
+            //when token String equals company info we start saving the information
+            companyInfoStart = true;
+        }
+
+        //read and save the info
+        if(companyInfoStart){
+            if(!strcmp(json->tokens[i].string, "name")){
+                companies[companyCnt].name = json->tokens[i+1].string;
+                printf("%s \r\n", companies[companyCnt].name);
+
+            }else if(!strcmp(json->tokens[i].string, "size")){
+                if(!strcmp(json->tokens[i+1].string, "Large")){
+                    companies[companyCnt].size = LARGE;
+                }else if(!strcmp(json->tokens[i+1].string, "Medium")){
+                    companies[companyCnt].size = MEDIUM;
+                }else if(!strcmp(json->tokens[i+1].string, "Small")){
+                    companies[companyCnt].size = SMALL;
+                }else if(!strcmp(json->tokens[i+1].string, "Startup")){
+                    companies[companyCnt].size = STARTUP;
+                }
+                printf("%d \r\n", companies[companyCnt].size);
+
+            }else if(!strcmp(json->tokens[i].string, "salary")){
+                companies[companyCnt].salary = atoi(json->tokens[i+1].string);
+                printf("%d \r\n", companies[companyCnt].salary);
+
+            }else if(!strcmp(json->tokens[i].string, "coding Test")){
+                companies[companyCnt].coding = json->tokens[i+1].string;
+                printf("%s \r\n", companies[companyCnt].coding);
+
+            }else if(!strcmp(json->tokens[i].string, "location")){
+                companies[companyCnt].location = json->tokens[i+1].string;
+                printf("%s \r\n", companies[companyCnt].location);
+
+            }else if(!strcmp(json->tokens[i].string, "recruiting")){
+                companies[companyCnt].recruitNum = atoi(json->tokens[i+1].string);
+                printf("%d \r\n", companies[companyCnt].recruitNum);
+            }
+
+        }
+    }
+
+}

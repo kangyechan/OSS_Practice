@@ -8,6 +8,7 @@ int main(int argc, char **argv) {
     int selectMenu;
 
     JSON json = {0};
+    Company companies = {0};
 
     while(selectMenu < 8) {
         printf("\nHello!! Welcome to the world of Occupation Search System.\n");
@@ -28,19 +29,17 @@ int main(int argc, char **argv) {
 
         switch (selectMenu) {
         case 1:
-            fileName = "fridge.json";
+            fileName = "test.json";
             doc = readfile(fileName, &filesize); // 파일 읽음
             fileCheck(fileName, doc); // 파일 내용 없으면 에러
             json_parse(doc, filesize, &json, &bigcnt); // 파서 시작
             printResult(&json, bigcnt); // 파서 출력
-            makeFoodToken();            // 파서결과를 Food Array에 저장
-            freeJson(&json, bigcnt); // 토큰 free
             break;
         case 2:
-
+            makeCompanyTokens(&json, &companies, bigcnt);// 파서결과를 Company Array에 저장
             break;
         case 3:
-
+            freeJson(&json, bigcnt); // 토큰 free
             break;
         case 4:
             break;

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define TOKEN_COUNT 1024
 
@@ -25,9 +26,33 @@ typedef struct _JSON {
     tok_t tokens[TOKEN_COUNT];
 } JSON;
 
-typedef struct _FOOD {
+typedef enum {
+    LARGE =1,
+    MEDIUM =2,
+    SMALL =3,
+    STARTUP =4
+    
+} c_size; //company size
 
-} FOOD;
+// typedef enum {
+//     Server Manager=1,
+//     MEDIUM =2,
+//     SMALL =3,
+//     STARTUP =5
+    
+// } job_positions; //job positions obviously
+
+typedef struct _Company {
+    char *name;
+    c_size size;
+    int salary;
+    int recruitNum;
+    char *coding;
+    char *location;
+    char *jobs[10][30];
+} Company;
+
+Company companies[TOKEN_COUNT];
 
 char *readfile(char*, int*);
 int fileCheck(char*, char*);
@@ -36,4 +61,4 @@ void object_parse(char*, JSON*, int*, int*);
 void json_parse(char*, int, JSON*, int*);
 void freeJson(JSON*, int);
 void printResult(JSON*, int);
-void makeFoodToken();
+void makeCompanyTokens(JSON*, Company*, int);
