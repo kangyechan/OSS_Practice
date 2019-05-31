@@ -5,7 +5,7 @@ int main(int argc, char **argv) {
     char *fileName;
     char *doc;
     int bigcnt = 0; //total count including objects in value.
-    int selectMenu;
+    int selectMenu=0;
     int companyCount=0;
     // Company *companies= malloc(sizeof(Company)*100);
 
@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
             printCompanies(companies, companyCount);
             freeJson(&json, bigcnt); // 토큰 free
 
-    while(selectMenu < 8) {
+    while(selectMenu < 9) {
         printf("\nHello!! Welcome to the world of Occupation Search System.\n");
         printf("Select one of the menus below :)\n");
         printf("************* Occupation Search System Application *************\n");
