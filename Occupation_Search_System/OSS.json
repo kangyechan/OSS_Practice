@@ -4,7 +4,7 @@
             "name": "SAMSUNG Electronics",
             "size": "Large",
             "salary": 4000,
-            "coding Test": true,
+            "coding Test": "YES",
             "location": "Jamsil, Seoul",
             "positions": [
                 "Algorithm Developer",
@@ -15,7 +15,7 @@
             "name": "NAVER",
             "size": "Large",
             "salary": 3900,
-            "coding Test": true,
+            "coding Test": "YES",
             "location": "Jeongja-dong, Sungnamsi",
             "positions": [
                 "Data Analyst",
@@ -29,7 +29,7 @@
             "name": "Google",
             "size": "Large",
             "salary": 6200,
-            "coding Test": true,
+            "coding Test": "YES",
             "location": "Gangnam, Seoul",
             "positions": [
                 "Data Analyst",
@@ -44,7 +44,7 @@
             "name": "Amazon",
             "size": "Large",
             "salary": 7000,
-            "coding Test": true,
+            "coding Test": "YES",
             "location": "Seattle, Washington",
             "positions": [
                 "Server Manager",
@@ -58,7 +58,7 @@
             "name": "TESLA",
             "size": "Large",
             "salary": 6300,
-            "coding Test": true,
+            "coding Test": "YES",
             "positions": [
                 "ADAS Developer",
                 "Deep Leaning Specialist",
@@ -69,7 +69,7 @@
             "name": "IBM",
             "size": "Large",
             "salary": 5900,
-            "coding Test": true,
+            "coding Test": "YES",
             "location": "3500 Deer Creek Road Palo Alto, California",
             "positions": [
                 "Server Manager",
@@ -81,7 +81,7 @@
             "name": "Facebook",
             "size": "Large",
             "salary": 6100,
-            "coding Test": true,
+            "coding Test": "YES",
             "location": "1 Hacker Way Menlo Park, California",
             "positions": [
                 "Server Manager",

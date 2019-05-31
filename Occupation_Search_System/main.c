@@ -12,6 +12,15 @@ int main(int argc, char **argv) {
     JSON json = {0};
     Company companies[100];
 
+            fileName = "OSS.json";
+            doc = readfile(fileName, &filesize); // 파일 읽음
+            fileCheck(fileName, doc); // 파일 내용 없으면 에러
+            json_parse(doc, filesize, &json, &bigcnt); // 파서 시작
+            printResult(&json, bigcnt); // 파서 출력
+            makeCompanyTokens(&json, companies, bigcnt, &companyCount);// 파서결과를 Company Array에 저장
+            printCompanies(companies, companyCount);
+            freeJson(&json, bigcnt); // 토큰 free
+
     while(selectMenu < 8) {
         printf("\nHello!! Welcome to the world of Occupation Search System.\n");
         printf("Select one of the menus below :)\n");
@@ -24,6 +33,7 @@ int main(int argc, char **argv) {
         printf("*    5.               Enter my Information.                    *\n");
         printf("*    6.               Recommended company.                     *\n");
         printf("*    7.                 I wont't get a job.                    *\n");
+        printf("*    8.                   Quit Program                         *\n");
         printf("*                                                              *\n");
         printf("****************************************************************\n");
         printf("your select : ");
@@ -31,14 +41,7 @@ int main(int argc, char **argv) {
 
         switch (selectMenu) {
         case 1:
-            fileName = "OSS.json";
-            doc = readfile(fileName, &filesize); // 파일 읽음
-            fileCheck(fileName, doc); // 파일 내용 없으면 에러
-            json_parse(doc, filesize, &json, &bigcnt); // 파서 시작
-            printResult(&json, bigcnt); // 파서 출력
-            makeCompanyTokens(&json, companies, bigcnt, &companyCount);// 파서결과를 Company Array에 저장
-            // printCompanies(&companies, companyCount);
-            freeJson(&json, bigcnt); // 토큰 free
+            
             break;
         case 2:
             break;
