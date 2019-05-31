@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
 
         switch (selectMenu) {
         case 1:
-            
+            searchByName(companies, companyCount);
             break;
         case 2:
             break;

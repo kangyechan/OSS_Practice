@@ -65,3 +65,4 @@ void freeJson(JSON*, int);
 void printResult(JSON*, int);
 void makeCompanyTokens(JSON*, Company*, int, int*);
 void printCompanies(Company*, int);
+void searchByName(Company*, int);

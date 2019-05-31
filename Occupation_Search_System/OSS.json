@@ -4,6 +4,7 @@
             "name": "SAMSUNG Electronics",
             "size": "Large",
             "salary": 4000,
+            "recruiting": 10,
             "coding Test": "YES",
             "location": "Jamsil, Seoul",
             "positions": [
@@ -15,6 +16,7 @@
             "name": "NAVER",
             "size": "Large",
             "salary": 3900,
+            "recruiting": 10,
             "coding Test": "YES",
             "location": "Jeongja-dong, Sungnamsi",
             "positions": [
@@ -29,6 +31,7 @@
             "name": "Google",
             "size": "Large",
             "salary": 6200,
+            "recruiting": 100,
             "coding Test": "YES",
             "location": "Gangnam, Seoul",
             "positions": [
@@ -44,6 +47,7 @@
             "name": "Amazon",
             "size": "Large",
             "salary": 7000,
+            "recruiting": 80,
             "coding Test": "YES",
             "location": "Seattle, Washington",
             "positions": [
@@ -58,6 +62,7 @@
             "name": "TESLA",
             "size": "Large",
             "salary": 6300,
+            "recruiting": 50,
             "coding Test": "YES",
             "positions": [
                 "ADAS Developer",
@@ -69,6 +74,7 @@
             "name": "IBM",
             "size": "Large",
             "salary": 5900,
+            "recruiting": 20,
             "coding Test": "YES",
             "location": "3500 Deer Creek Road Palo Alto, California",
             "positions": [
@@ -81,6 +87,7 @@
             "name": "Facebook",
             "size": "Large",
             "salary": 6100,
+            "recruiting": 40,
             "coding Test": "YES",
             "location": "1 Hacker Way Menlo Park, California",
             "positions": [
