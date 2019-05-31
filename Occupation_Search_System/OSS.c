@@ -22,7 +22,7 @@ void printCompanies(Company *companies, int count) {
         printf("Available Positions : \r\n");
 
         for(int j = 0; j < companies[i].positionCount; j++){
-            printf(" %d. %s \r\n", j+1, companies[i].positions[j]);
+            printf(" %d. %s \r\n", j + 1, companies[i].positions[j]);
         }
     }
     printf("**********************************************************\n");
