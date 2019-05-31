@@ -394,7 +394,9 @@ void searchByName(Company *companies, int count){
 void searchBySize(Company *companies, int count){
     char size[10];
     char *sizeToStr;
+    int selectedComapny;
 
+    
     printf("Enter size of company: ");
     scanf("%s", size);
 
@@ -421,15 +423,21 @@ void searchBySize(Company *companies, int count){
         if(!strcmp(sizeToStr,size)){ //if user input and company size are equal
             printf("\r\n[%d] %s \r\n", i + 1, companies[i].name);
             printf("Size : %s \r\n", sizeToStr);
-            printf("Recruiting # : %d \r\n", companies[i].recruitNum);
-            printf("Coding Test : %s \r\n", companies[i].coding);
-            printf("Salary : %d \r\n", companies[i].salary);
-            printf("Available Positions : \r\n");
-            for(int j=0; j<companies[i].positionCount; j++){
-                printf(" %d. %s \r\n", j+1,companies[i].positions[j]);
-            }
+
         }
     }
 
+        
+    printf("Enter number of company for more information: ");
+    scanf("%d", &selectedComapny);
+            printf("\r\n[%d] %s \r\n", i + 1, companies[selectedComapny-1].name);
+            printf("\r\nRecruiting # : %d \r\n", companies[selectedComapny-1].recruitNum);
+            printf("Coding Test : %s \r\n", companies[selectedComapny-1].coding);
+            printf("Salary : %d \r\n", companies[selectedComapny-1].salary);
+            printf("Available Positions : \r\n");
+            for(int j=0; j<companies[selectedComapny-1].positionCount; j++){
+                printf(" %d. %s \r\n", j+1,companies[selectedComapny-1].positions[j]);
+            }
     
+
 }
