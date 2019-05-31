@@ -11,7 +11,7 @@ void makeCompanyTokens(JSON *json, Company *companies, int bigcnt, int *companyC
         //read and save the info
         if(companyInfoStart){
             if(!strcmp(json->tokens[i].string, "name")){
-
+                
                 companies[*companyCount].name = json->tokens[i+1].string;
 
             }else if(!strcmp(json->tokens[i].string, "size")){
