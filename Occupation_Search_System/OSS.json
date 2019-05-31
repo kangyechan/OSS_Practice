@@ -72,7 +72,7 @@
         },
         {
             "name": "IBM",
-            "size": "Large",
+            "size": "Medium",
             "salary": 5900,
             "recruiting": 20,
             "coding Test": "YES",

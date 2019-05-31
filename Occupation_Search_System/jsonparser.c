@@ -389,3 +389,47 @@ void searchByName(Company *companies, int count){
 
     
 }
+
+
+void searchBySize(Company *companies, int count){
+    char size[10];
+    char *sizeToStr;
+
+    printf("Enter size of company: ");
+    scanf("%s", size);
+
+    // printf("%d",(int)strlen(size));
+
+    printf("Results:");
+
+    for (int i = 0; i < count; i++) {
+    // printf("%s",companies[i].name);
+
+
+            if (companies[i].size == 1){
+                sizeToStr = "Large";
+            }
+            else if (companies[i].size == 2){
+                sizeToStr = "Medium";
+            }
+            else if (companies[i].size == 3){
+                sizeToStr = "Small";
+            }
+            else{
+                sizeToStr = "Startup";
+            }
+        if(!strcmp(sizeToStr,size)){
+            printf("\r\n[%d] %s \r\n", i + 1, companies[i].name);
+            printf("Size : %s \r\n", sizeToStr);
+            printf("Recruiting # : %d \r\n", companies[i].recruitNum);
+            printf("Coding Test : %s \r\n", companies[i].coding);
+            printf("Salary : %d \r\n", companies[i].salary);
+            printf("Available Positions : \r\n");
+            for(int j=0; j<companies[i].positionCount; j++){
+                printf(" %d. %s \r\n", j+1,companies[i].positions[j]);
+            }
+        }
+    }
+
+    
+}

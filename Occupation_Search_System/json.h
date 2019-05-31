@@ -66,3 +66,4 @@ void printResult(JSON*, int);
 void makeCompanyTokens(JSON*, Company*, int, int*);
 void printCompanies(Company*, int);
 void searchByName(Company*, int);
+void searchBySize(Company*, int);
