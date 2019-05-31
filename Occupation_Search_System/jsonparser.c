@@ -33,7 +33,9 @@ char *readfile(char *filename, int *filesize) {
     }
 
     *filesize = size;
+
     fclose(fp);
+
     return buffer;
 }
 
@@ -216,7 +218,7 @@ void json_parse(char *doc, int size, JSON *json, int *b_cnt) {
         case '{':
             object_parse(doc, json, &pos, &tokenIndex);
             break;
-        default :
+        default:
             pos++;
         }
     }
@@ -233,263 +235,18 @@ void freeJson(JSON *json, int bigcnt) {
 
 void printResult(JSON *json, int bigcnt) {
     char *typeToStr;
-    printf("\n*********************** All Tokens *************************\n");
+    printf("*********** All Tokens ***********\n");
     for (int i = 0; i < bigcnt; i++) {
         if (json->tokens[i].type == 0)
-            typeToStr = "JSMN_UNDEFINED";
+            typeToStr = "UNDEFINED";
         else if (json->tokens[i].type == 1)
-            typeToStr = "JSMN_OBJECT";
+            typeToStr = "OBJECT";
         else if (json->tokens[i].type == 2)
-            typeToStr = "JSMN_ARRAY";
+            typeToStr = "ARRAY";
         else if (json->tokens[i].type == 3)
-            typeToStr = "JSMN_STRING";
+            typeToStr = "STRING";
         else
-            typeToStr = "JSMN_PRIMITIVE";
-        printf("[%d] %s (size = %d, %d~%d, %s) \n", i + 1, json->tokens[i].string, json->tokens[i].size, json->tokens[i].start, json->tokens[i].end, typeToStr);
+            typeToStr = "PRIMITIVE";
+        printf("[%d] %s (size = %d, %d~%d, %s) \n", i , json->tokens[i].string, json->tokens[i].size, json->tokens[i].start, json->tokens[i].end, typeToStr);
     }
-    printf("**********************************************************\n");
-}
-
-
-void makeCompanyTokens(JSON *json, Company *companies, int bigcnt, int *companyCount){
-    bool companyInfoStart = false;
-    *companyCount=0;
-    for(int i = 0; i<bigcnt; i++){
-        // printf("%s, %d \r\n", json->tokens[i].string, json->tokens[i].size);
-        // printf("%d of %d \r\n", i, bigcnt);
-
-        if(!strcmp(json->tokens[i].string, "company information")){
-            //when token String equals company info we start saving the information
-            companyInfoStart = true;
-        }
-        //read and save the info
-        if(companyInfoStart){
-            if(!strcmp(json->tokens[i].string, "name")){
-                companies[*companyCount].name = json->tokens[i+1].string;
-                // printf("\r\n\r\ncmpCnt %d\r\n", *companyCount);
-
-                // printf("Name: %s \r\n", companies[*companyCount].name);
-                
-            }else if(!strcmp(json->tokens[i].string, "size")){
-                if(!strcmp(json->tokens[i+1].string, "Large")){
-                    companies[*companyCount].size = LARGE;
-                }else if(!strcmp(json->tokens[i+1].string, "Medium")){
-                    companies[*companyCount].size = MEDIUM;
-                }else if(!strcmp(json->tokens[i+1].string, "Small")){
-                    companies[*companyCount].size = SMALL;
-                }else if(!strcmp(json->tokens[i+1].string, "Startup")){
-                    companies[*companyCount].size = STARTUP;
-                }
-
-            }else if(!strcmp(json->tokens[i].string, "salary")){
-                companies[*companyCount].salary = atoi(json->tokens[i+1].string);
-
-
-            }else if(!strcmp(json->tokens[i].string, "coding Test")){
-                companies[*companyCount].coding = json->tokens[i+1].string;
-
-            }else if(!strcmp(json->tokens[i].string, "location")){
-                companies[*companyCount].location = json->tokens[i+1].string;
-
-
-            }else if(!strcmp(json->tokens[i].string, "recruiting")){
-                companies[*companyCount].recruitNum = atoi(json->tokens[i+1].string);
-
-            }else if(!strcmp(json->tokens[i].string, "positions")){
-                int positionCount = json->tokens[i+1].size;
-                companies[*companyCount].positionCount = positionCount;
-                // printf("position count %d \r\n",companies[*companyCount].positionCount);
-                
-                for(int j=0; j<positionCount; j++){
-                    strcpy(companies[*companyCount].positions[j],json->tokens[i+2+j].string);
-                    // printf("%d, %s \r\n", j,companies[*companyCount].positions[j]);
-                    // printf("%s \r\n", json->tokens[i+2+j].string);
-                        // i++;
-
-                }
-
-
-                *companyCount+=1;//positions is the last info of a company that appears
-                //so after reading this we increment the value
-            }
-                            // i++;
-
-        }
-    }
-
-}
-
-void printCompanies(Company *companies, int count) {
-    char *sizeToStr;
-    printf("\n*********************** Companies *************************\n");
-    for (int i = 0; i < count; i++) {
-        if (companies[i].size == 1)
-            sizeToStr = "Large";
-        else if (companies[i].size == 2)
-            sizeToStr = "Medium";
-        else if (companies[i].size == 3)
-            sizeToStr = "Small";
-        else if (companies[i].size == 4)
-            sizeToStr = "Startup";
-
-        printf("\r\n[%d] %s \r\n", i + 1, companies[i].name);
-        printf("Size : %s \r\n", sizeToStr);
-        printf("Recruiting # : %d \r\n", companies[i].recruitNum);
-        printf("Coding Test : %s \r\n", companies[i].coding);
-        printf("Salary : %d \r\n", companies[i].salary);
-        printf("Location is : %s \r\n", companies[i].location);
-        printf("Available Positions : \r\n");
-
-        for(int j=0; j<companies[i].positionCount; j++){
-            printf(" %d. %s \r\n", j+1,companies[i].positions[j]);
-        }
-    }
-    printf("**********************************************************\n");
-}
-
-
-void searchByName(Company *companies, int count){
-    char* name;
-    char *sizeToStr;
-    
-    printf("Enter a company name: ");
-    scanf("%s", name);
-
-    printf("%d",(int)strlen(name));
-
-    printf("Results:");
-
-    for (int i = 0; i < count; i++) {
-    printf("%s",companies[i].name);
-
-        if(!(strcmp(name, companies[i].name))){
-            if (companies[i].size == 1){
-                sizeToStr = "Large";
-            }
-            else if (companies[i].size == 2){
-                sizeToStr = "Medium";
-            }
-            else if (companies[i].size == 3){
-                sizeToStr = "Small";
-            }
-            else{
-                sizeToStr = "Startup";
-            }
-
-            printf("\r\n[%d] %s \r\n", i + 1, companies[i].name);
-            printf("Recruiting # : %d \r\n", companies[i].recruitNum);
-            printf("Coding Test : %s \r\n", companies[i].coding);
-            printf("Salary : %d \r\n", companies[i].salary);
-            printf("Available Positions : \r\n");
-            for(int j=0; j<companies[i].positionCount; j++){
-                printf(" %d. %s \r\n", j+1,companies[i].positions[j]);
-            }
-        }
-    }
-
-    
-}
-
-
-void searchBySize(Company *companies, int count){
-    char size[10];
-    char *sizeToStr;
-    int selectedComapny;
-
-    
-    printf("Enter size of company: ");
-    scanf("%s", size);
-
-    // printf("%d",(int)strlen(size));
-
-    printf("Results:");
-
-    for (int i = 0; i < count; i++) {
-    // printf("%s",companies[i].name);
-
-            //convert size number to string equivalent
-            if (companies[i].size == 1){
-                sizeToStr = "Large";
-            }
-            else if (companies[i].size == 2){
-                sizeToStr = "Medium";
-            }
-            else if (companies[i].size == 3){
-                sizeToStr = "Small";
-            }
-            else{
-                sizeToStr = "Startup";
-            }
-        if(!strcmp(sizeToStr,size)){ //if user input and company size are equal
-            printf("\r\n[%d] %s \r\n", i + 1, companies[i].name);
-            printf("Size : %s \r\n", sizeToStr);
-
-        }
-    }
-
-        
-    printf("Enter number of company for more information: ");
-    scanf("%d", &selectedComapny);
-            printf("\r\n%s \r\n", companies[selectedComapny-1].name);
-            printf("\r\nRecruiting # : %d \r\n", companies[selectedComapny-1].recruitNum);
-            printf("Coding Test : %s \r\n", companies[selectedComapny-1].coding);
-            printf("Salary : %d \r\n", companies[selectedComapny-1].salary);
-            printf("Available Positions : \r\n");
-            for(int j=0; j<companies[selectedComapny-1].positionCount; j++){
-                printf(" %d. %s \r\n", j+1,companies[selectedComapny-1].positions[j]);
-            }
-    
-
-}
-
-void searchBySalary(Company *companies, int count){
-    int minSalary;
-    char *sizeToStr;
-    int selectedComapny;
-
-    
-    printf("Enter desired minimum salary : ");
-    scanf("%d", &minSalary);
-
-    // printf("%d",(int)strlen(size));
-
-    printf("Results:");
-
-    for (int i = 0; i < count; i++) {
-    // printf("%s",companies[i].name);
-        if(companies[i].salary>minSalary){ //if user input and company size are equal
-
-            printf("\r\n[%d] %s \r\n", i + 1, companies[i].name);
-            printf("Salary : %d \r\n", companies[i].salary);
-
-        }
-    }
-
-        
-    printf("Enter number of company for more information: ");
-    scanf("%d", &selectedComapny);
-            //convert size number to string equivalent
-            if (companies[selectedComapny-1].size == 1){
-                sizeToStr = "Large";
-            }
-            else if (companies[selectedComapny-1].size == 2){
-                sizeToStr = "Medium";
-            }
-            else if (companies[selectedComapny-1].size == 3){
-                sizeToStr = "Small";
-            }
-            else{
-                sizeToStr = "Startup";
-            }
-            printf("Size : %s \r\n", sizeToStr);
-            printf("\r\n%s \r\n", companies[selectedComapny-1].name);
-            printf("\r\nRecruiting # : %d \r\n", companies[selectedComapny-1].recruitNum);
-            printf("Coding Test : %s \r\n", companies[selectedComapny-1].coding);
-            printf("Salary : %d \r\n", companies[selectedComapny-1].salary);
-            printf("Available Positions : \r\n");
-            for(int j=0; j<companies[selectedComapny-1].positionCount; j++){
-                printf(" %d. %s \r\n", j+1,companies[selectedComapny-1].positions[j]);
-            }
-    
-
 }
