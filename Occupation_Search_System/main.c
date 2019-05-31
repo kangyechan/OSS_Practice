@@ -6,11 +6,11 @@ int main(int argc, char **argv) {
     char *doc;
     int bigcnt = 0; //total count including objects in value.
     int selectMenu = 0;
-    int companyCount=0;
+    int companyCount = 0;
     // Company *companies= malloc(sizeof(Company)*100);
 
     JSON json = {0};
-    Company companies[10];
+    Company companies[20];
 
     fileName = "OSS.json";
     doc = readfile(fileName, &filesize); // 파일 읽음
