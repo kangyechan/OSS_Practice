@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
 
         switch (selectMenu) {
         case 1:
-            fileName = "test.json";
+            fileName = "OSS.json";
             doc = readfile(fileName, &filesize); // 파일 읽음
             fileCheck(fileName, doc); // 파일 내용 없으면 에러
             json_parse(doc, filesize, &json, &bigcnt); // 파서 시작

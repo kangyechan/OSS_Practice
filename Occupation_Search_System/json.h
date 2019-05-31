@@ -49,7 +49,7 @@ typedef struct _Company {
     int recruitNum;
     char *coding;
     char *location;
-    char *jobs[10][30];
+    char positions[10][30];
 } Company;
 
 Company companies[TOKEN_COUNT];
