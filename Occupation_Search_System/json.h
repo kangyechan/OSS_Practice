@@ -58,11 +58,11 @@ typedef struct _Company {
 
 
 typedef struct _School {
-    char *name;
+    char name[50];
     c_size size;
     char location[60];
     int typeCount;
-    char type[10][30];
+    char type[100][100];
 } School;
 
 
