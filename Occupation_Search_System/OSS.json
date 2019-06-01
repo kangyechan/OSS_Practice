@@ -7,6 +7,7 @@
             "recruiting": 10,
             "coding Test": "YES",
             "location": "Jamsil, Seoul",
+            "city": "Seoul",
             "positions": [
                 "Algorithm Developer",
                 "Intern",
@@ -19,6 +20,7 @@
             "salary": 3900,
             "recruiting": 10,
             "coding Test": "YES",
+            "city": "Sungnam",
             "location": "Jeongja-dong, Sungnamsi",
             "positions": [
                 "Data Analyst",
@@ -34,6 +36,7 @@
             "salary": 6200,
             "recruiting": 100,
             "coding Test": "YES",
+            "city": "Seoul",
             "location": "Gangnam, Seoul",
             "positions": [
                 "Data Analyst",
@@ -50,6 +53,7 @@
             "salary": 7000,
             "recruiting": 80,
             "coding Test": "YES",
+            "city": "Seattle",
             "location": "Seattle, Washington",
             "positions": [
                 "Server Manager",
@@ -65,6 +69,7 @@
             "salary": 6300,
             "recruiting": 50,
             "coding Test": "YES",
+            "city": "Palo Alto",
             "location": "3500 Deer Creek Road Palo Alto, California",
             "positions": [
                 "ADAS Developer",
@@ -78,6 +83,7 @@
             "salary": 5900,
             "recruiting": 20,
             "coding Test": "YES",
+            "city": "New York",
             "location": "Armonk, New York, United States",
             "positions": [
                 "Server Manager",
@@ -91,6 +97,7 @@
             "salary": 6100,
             "recruiting": 40,
             "coding Test": "YES",
+            "city": "Menlo Park",
             "location": "1 Hacker Way Menlo Park, California",
             "positions": [
                 "Server Manager",
@@ -106,6 +113,7 @@
             "salary": 6200,
             "recruiting": 100,
             "coding Test": "YES",
+            "city": "Seoul",
             "location": "Gangnam, Seoul",
             "positions": [
                 "Data Analyst",

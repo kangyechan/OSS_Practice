@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
+#include <windows.h>
 #define TOKEN_COUNT 1024
 
 typedef enum {
@@ -49,19 +49,16 @@ typedef struct _Company {
     int recruitNum;
     char *coding;
     char location[60];
+    char city[15];
     int positionCount;
     char positions[10][30];
 } Company;
 
 typedef struct _User {
-    char *name;
-    c_size size;
+    char name[30];
     int salary;
-    int recruitNum;
-    char *coding;
-    char *location;
-    int positionCount;
-    char positions[10][30];
+    char city[15];
+    int workAbroad;
 } User;
 
 char *readfile(char*, int*);
@@ -77,3 +74,5 @@ void searchByName(Company*, int);
 void searchBySize(Company*, int);
 void searchBySalary(Company*, int);
 void searchByJob(Company*, int, char[][40], int);
+void enterInfo(User*);
+// void recommendations(User*);

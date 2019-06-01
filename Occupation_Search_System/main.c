@@ -1,5 +1,7 @@
 #include "json.h"
 //gcc -o OSS ./makelist.c ./OSS.c ./jsonparser.c ./main.c
+#include<stdio.h>
+#include<stdlib.h>
 
 int main(int argc, char **argv) {
     int filesize = 0;
@@ -12,6 +14,8 @@ int main(int argc, char **argv) {
 
     JSON json = {0};
     Company companies[20];
+    User user[1];
+
     char jobs[][40] = { "Algorithm Developer", "Intern","App Developer", "Data Analyst", "Web Developer"
     , "DB Manager", "Project Manager", "ML Specialist", "Server Manager", "Big Data Specialist", "UX Specialist",
     "Web Secuity Specialist", "ADAS Developer", "ALGO Optimization Specialist"};
@@ -61,7 +65,7 @@ int main(int argc, char **argv) {
             searchByJob(companies, companyCount, jobs, jobCount);
             break;
         case 6:
-
+            enterInfo(user);
             break;
         case 7:
 

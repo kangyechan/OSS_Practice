@@ -39,6 +39,9 @@ void makeCompanyTokens(JSON *json, Company *companies, int bigcnt, int *companyC
             }else if(!strcmp(json->tokens[i].string, "recruiting")){
                 companies[*companyCount].recruitNum = atoi(json->tokens[i+1].string);
 
+            }else if(!strcmp(json->tokens[i].string, "city")){
+                strcpy(companies[*companyCount].city , json->tokens[i+1].string);
+
             }else if(!strcmp(json->tokens[i].string, "positions")){
                 int positionCount = json->tokens[i+1].size;
                 companies[*companyCount].positionCount = positionCount;

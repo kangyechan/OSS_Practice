@@ -18,7 +18,8 @@ void printCompanies(Company *companies, int count) {
         printf("Recruiting # : %d \r\n", companies[i].recruitNum);
         printf("Coding Test : %s \r\n", companies[i].coding);
         printf("Salary : %d \r\n", companies[i].salary);
-        printf("Location is : %s \r\n", companies[i].location);
+        printf("Location : %s \r\n", companies[i].location);
+        printf("City : %s \r\n", companies[i].city);
         printf("Available Positions : \r\n");
 
         for(int j = 0; j < companies[i].positionCount; j++){
@@ -226,4 +227,62 @@ void searchByJob(Company *companies, int companyCount, char jobs[][40], int jobC
     for(int j=0; j<companies[selectedComapny-1].positionCount; j++){
         printf(" %d. %s \r\n", j+1,companies[selectedComapny-1].positions[j]);
     }
+}
+
+
+
+
+void enterInfo(User* ourUser){
+    char answer[5];
+    char salary[10];
+    printf("What is your name? : ");
+    scanf("%s", ourUser[0].name);
+    printf("Hi %s, Welcome!", ourUser[0].name);
+  
+    printf("\r\nWhere do you live or want to work? : ");
+    scanf("%s", ourUser[0].city);
+    printf("So you want to work at %s\r\n", ourUser[0].city);
+
+
+    printf("How about working abroad? y/n: \r\n");
+    scanf("%s", answer);
+    if(!strcmp(answer, "Yes")){
+        ourUser[0].workAbroad=1;
+    }else{
+        ourUser[0].workAbroad=0;
+    }
+    if(ourUser[0].workAbroad){
+        printf("So you don't mind working overseas!\r\n");
+    }else{
+        printf("Okay we understand. You like staying closer to home.\r\n");
+    }
+    
+
+    printf("How much salary would be okay for you? : ");
+    scanf("%s", salary);
+    ourUser[0].salary = atoi(salary);
+    if( ourUser[0].salary>=7000){
+        printf("%d is quite a bit of money!\r\n", ourUser[0].salary);
+    }else{
+        printf("%d sounds like a good amount.\r\n", ourUser[0].salary);
+    }
+
+    printf("Now we will run our algorithm....\r\n");
+    Sleep(1800);
+    printf("Making calculations...\r\n");
+    Sleep(1800);
+    printf("Making a cup of coffee...\r\n"); 
+    Sleep(1800);
+    printf("Finalyzing..");
+    for(int g=0; g<6; g++){
+        Sleep(600);
+        printf("...");
+    }
+    printf("\r\nHere are the results!\r\n");
+    Sleep(1500);
+    printf("NONE\r\n");
+
+
+
+
 }
