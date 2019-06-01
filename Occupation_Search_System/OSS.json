@@ -9,7 +9,8 @@
             "location": "Jamsil, Seoul",
             "positions": [
                 "Algorithm Developer",
-                "Intern"
+                "Intern",
+                "App Developer"
             ]
         },
         {
@@ -21,10 +22,10 @@
             "location": "Jeongja-dong, Sungnamsi",
             "positions": [
                 "Data Analyst",
-                "Web Designer",
+                "Web Developer",
                 "DB Manager",
                 "Project Manager",
-                "Machine Learning Specialist"
+                "ML Specialist"
             ]
         },
         {
@@ -36,11 +37,11 @@
             "location": "Gangnam, Seoul",
             "positions": [
                 "Data Analyst",
-                "Web Designer",
+                "Web Developer",
                 "DB Manager",
                 "Project Manager",
                 "Algorithm Developer",
-                "Deep learning Specialist"
+                "ML Specialist"
             ]
         },
         {
@@ -64,10 +65,11 @@
             "salary": 6300,
             "recruiting": 50,
             "coding Test": "YES",
+            "location": "3500 Deer Creek Road Palo Alto, California",
             "positions": [
                 "ADAS Developer",
-                "Deep Leaning Specialist",
-                "Algorithm Optimization Specialist"
+                "ML Specialist",
+                "ALGO Optimization Specialist"
             ]
         },
         {

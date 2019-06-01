@@ -163,3 +163,67 @@ void searchBySalary(Company *companies, int count){
         printf(" %d. %s \r\n", j+1,companies[selectedComapny-1].positions[j]);
     }
 }
+
+void searchByJob(Company *companies, int companyCount, char jobs[][40], int jobCount){
+    int jobSelection;
+    char *sizeToStr;
+    int selectedComapny;
+    char jobToSearch[40];
+    for (int c = 0; c < jobCount; c++) {
+            printf("[%d] %s \r\n", c + 1, jobs[c]);
+    }
+
+    printf("Enter your choice from position list : ");
+    scanf("%d", &jobSelection);
+
+    strcpy(jobToSearch,jobs[jobSelection-1]);
+    printf("Selected job is : %s \r\n", jobToSearch);
+
+    for (int i = 0; i < companyCount; i++) {
+    // printf("%s",companies[i].name);
+        for(int j =0; j < companies[i].positionCount; j++){
+            if(!strcmp(companies[i].positions[j], jobToSearch)){ //if job is found
+                    //print company info
+                    if (companies[i].size == 1){
+                        sizeToStr = "Large";
+                    }
+                    else if (companies[i].size == 2){
+                        sizeToStr = "Medium";
+                    }
+                    else if (companies[i].size == 3){
+                        sizeToStr = "Small";
+                    }
+                    else{
+                        sizeToStr = "Startup";
+                    }
+
+                    printf("\r\n[%d] %s \r\n", i + 1, companies[i].name);
+                    printf("Position: \r\n");
+                    printf(" %s \r\n", companies[i].positions[j]);
+                    
+            }
+        }
+
+    }
+    printf("Enter number of company for more information: ");
+    scanf("%d", &selectedComapny);
+    //convert size number to string equivalent
+    if (companies[selectedComapny-1].size == 1){
+        sizeToStr = "Large";
+    } else if (companies[selectedComapny-1].size == 2){
+        sizeToStr = "Medium";
+    } else if (companies[selectedComapny-1].size == 3){
+        sizeToStr = "Small";
+    } else{
+        sizeToStr = "Startup";
+    }
+    printf("Size : %s \r\n", sizeToStr);
+    printf("\r\n%s \r\n", companies[selectedComapny-1].name);
+    printf("\r\nRecruiting # : %d \r\n", companies[selectedComapny-1].recruitNum);
+    printf("Coding Test : %s \r\n", companies[selectedComapny-1].coding);
+    printf("Salary : %d \r\n", companies[selectedComapny-1].salary);
+    printf("Available Positions : \r\n");
+    for(int j=0; j<companies[selectedComapny-1].positionCount; j++){
+        printf(" %d. %s \r\n", j+1,companies[selectedComapny-1].positions[j]);
+    }
+}

@@ -66,3 +66,4 @@ void printCompanies(Company*, int);
 void searchByName(Company*, int);
 void searchBySize(Company*, int);
 void searchBySalary(Company*, int);
+void searchByJob(Company*, int, char[][40], int);

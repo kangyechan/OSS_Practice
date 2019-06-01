@@ -11,6 +11,10 @@ int main(int argc, char **argv) {
 
     JSON json = {0};
     Company companies[20];
+    char jobs[][40] = { "Algorithm Developer", "Intern","App Developer", "Data Analyst", "Web Developer"
+    , "DB Manager", "Project Manager", "ML Specialist", "Server Manager", "Big Data Specialist", "UX Specialist",
+    "Web Secuity Specialist", "ADAS Developer", "ALGO Optimization Specialist"};
+    int jobCount = 14;
 
     fileName = "OSS.json";
     doc = readfile(fileName, &filesize); // 파일 읽음
@@ -53,7 +57,7 @@ int main(int argc, char **argv) {
             searchBySalary(companies, companyCount);
             break;
         case 5:
-
+            searchByJob(companies, companyCount, jobs, jobCount);
             break;
         case 6:
 
