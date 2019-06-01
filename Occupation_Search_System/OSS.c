@@ -254,7 +254,7 @@ void searchByJob(Company *companies, int companyCount, char jobs[][40], int jobC
 void enterInfo(User* ourUser){
     char answer[5];
     char salary[10];
-    printf("What is your name? : ");
+    printf("What is your first name? : ");
     scanf("%s", ourUser[0].name);
     printf("Hi %s, Welcome!", ourUser[0].name);
   
