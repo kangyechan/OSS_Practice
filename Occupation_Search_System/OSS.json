@@ -136,13 +136,15 @@
             ]
         }
     ],
-    "graduate school": [
+   "graduate school": [
         {
             "name": "HANDONG",
             "location": "pohang",
             "type": [
-                "Big Data",
-                "AI"
+                "Park Young Chun - Bio-sensing and Automatic Liquid Delivery System",
+                "Kim Kwang,Jang Soyeon  -Information management and supply web/ Application Development for App Service",
+                "Nam Jae chang - Building a Unified Big Data Center",
+                "Lee Won Hyung - Development of Emotional Robot Head for Social Interaction between Human and Robot"
             ]
         },
         {
@@ -151,6 +153,22 @@
             "type": [
                 "Bio Big Data",
                 "Machine Learning"
+            ]
+        },
+        {
+            "name": "Kyungpook National University",
+            "location": "Daegu",
+            "type": [
+                "Big Data",
+                "Mobile Database"
+            ]
+        },
+        {
+            "name": "Hanyang University",
+            "location": "Seoul",
+            "type": [
+                "System design",
+                "AI"
             ]
         }
     ]
