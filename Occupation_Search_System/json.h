@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <windows.h>
+// #include <unistd.h>
 #define TOKEN_COUNT 1024
 
 typedef enum {
@@ -43,16 +44,17 @@ typedef enum {
 // } job_positions; //job positions obviously
 
 typedef struct _Company {
-    char *name;
+    char name[30];
     c_size size;
     int salary;
     int recruitNum;
-    char *coding;
+    char coding[5];
     char location[60];
     char city[15];
     int positionCount;
     char positions[10][30];
 } Company;
+
 
 typedef struct _School {
     char *name;
