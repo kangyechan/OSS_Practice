@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
             searchByJob(companies, companyCount, jobs, jobCount);
             break;
         case 6:
-            enterInfo(user);
+            enterInfo(user,companies, companyCount);
             break;
         case 7:
             break;
