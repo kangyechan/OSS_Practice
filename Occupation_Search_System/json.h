@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <windows.h>
+#include <ctype.h>
 // #include <unistd.h>
 #define TOKEN_COUNT 1024
 
@@ -89,4 +90,6 @@ void searchBySize(Company*, int);
 void searchBySalary(Company*, int);
 void searchByJob(Company*, int, char[][40], int);
 void enterInfo(User*,Company*, int);
+bool toLower(int, char*, char*);
+void noExist();
 // void recommendations(User*);
