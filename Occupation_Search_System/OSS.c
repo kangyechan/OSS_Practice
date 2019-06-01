@@ -49,6 +49,52 @@ void printschools(School *schools, int count) {
 }
 
 
+void chooseGraduateSchool(School *schools, int count){
+    char name[20];
+    char *sizeToStr;
+    int num=0;
+    
+    printf("Enter a graduate school name: ");
+    scanf("%s", name);
+    printf("\n************************************************************************");
+    printf("Results:");
+    for (int i = 0; i < count; i++) {
+        // printf("%s",companies[i].name);
+
+        if(!(strcmp(name, schools[i].name))){
+            printf("\r\n[%d] %s \r\n", i + 1, schools[i].name);
+            printf("Available Types : \r\n");
+            for(int j=0; j<schools[i].typeCount; j++){
+                printf(" %d. %s \r\n", j+1,schools[i].type[j]);
+            }
+        }
+    }
+    printf("\n************************************************************************\n");
+ 
+    printf("Where do you wnat to apply? Choose the number.\n");
+    
+    while(num != 4){
+        scanf("%d", &num);
+
+        switch (num)
+        {
+        case 1: case 2: case 3:
+            printf("I recommad you to apply Lee Won Hyung professor's lab");
+            printf(" Choose again\n");
+            break;
+        case 4:
+            printf("Apply now \nemail: whlee@handong.edu");
+            break;      
+        default:
+            break;
+        }
+    }
+
+}
+
+
+
+
 
 void searchByName(Company *companies, int count){
     char name[20];
