@@ -56,7 +56,6 @@ void makeCompanyTokens(JSON *json, Company *companies, int bigcnt, int *companyC
         }
     }
 }
-
 void makeGraduateSchoolToken(JSON *json, School *schools, int bigcnt, int *schoolCount){
     bool schoolInfoStart = false;
         *schoolCount = 0;
@@ -68,7 +67,8 @@ void makeGraduateSchoolToken(JSON *json, School *schools, int bigcnt, int *schoo
             //read and save the info
             if(schoolInfoStart){
                 if(!strcmp(json->tokens[i].string, "name")){
-                    schools[*schoolCount].name = json->tokens[i+1].string;
+                    strcpy(schools[*schoolCount].name,json->tokens[i+1].string);
+
 
                 }else if(!strcmp(json->tokens[i].string, "location")){
                     strcpy(schools[*schoolCount].location , json->tokens[i+1].string);
