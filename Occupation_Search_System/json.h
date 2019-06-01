@@ -81,6 +81,7 @@ void freeJson(JSON*, int);
 void printResult(JSON*, int);
 void makeCompanyTokens(JSON*, Company*, int, int*);
 void makeGraduateSchoolToken(JSON*, School*, int, int*);
+void chooseGraduateSchool(School *schools, int count);
 void printCompanies(Company*, int);
 void printschools(School*, int);
 void searchByName(Company*, int);
