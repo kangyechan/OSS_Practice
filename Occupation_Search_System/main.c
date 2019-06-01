@@ -10,10 +10,12 @@ int main(int argc, char **argv) {
     int bigcnt = 0; //total count including objects in value.
     int selectMenu = 0;
     int companyCount = 0;
+    int schoolCount = 0;
     // Company *companies= malloc(sizeof(Company)*100);
 
     JSON json = {0};
     Company companies[20];
+    School schools[20];
     User user[1];
 
     char jobs[][40] = { "Algorithm Developer", "Intern","App Developer", "Data Analyst", "Web Developer"
@@ -27,6 +29,7 @@ int main(int argc, char **argv) {
     json_parse(doc, filesize, &json, &bigcnt); // 파서 시작
     printResult(&json, bigcnt); // 파서 출력
     makeCompanyTokens(&json, companies, bigcnt, &companyCount);// 파서결과를 Company Array에 저장
+    makeGraduateSchoolToken(&json,schools, bigcnt, &schoolCount); //파서 결과를 School Array에 저장.
     freeJson(&json, bigcnt); // 토큰 free
 
     while(selectMenu < 8) {
@@ -68,12 +71,12 @@ int main(int argc, char **argv) {
             enterInfo(user);
             break;
         case 7:
-
             break;
         case 8:
-            printf("OK. Bye! :)\n");
+            printschools(schools, schoolCount);
             break;
         case 9:
+            printf("OK. Bye! :)\n");
             return 0;
         default:
             break;

@@ -29,6 +29,25 @@ void printCompanies(Company *companies, int count) {
     printf("**********************************************************\n");
 }
 
+void printschools(School *schools, int count) {
+    char *sizeToStr;
+    printf("\n*********************** Graduate Schools List *************************\n");
+    for (int i = 0; i < count; i++) {
+        printf("\r\n[%d] %s \r\n", i + 1, schools[i].name);
+       // printf("Recruiting # : %d \r\n", companies[i].recruitNum);
+     //   printf("Coding Test : %s \r\n", companies[i].coding);
+      //  printf("Salary : %d \r\n", companies[i].salary);
+        printf("Location : %s \r\n", schools[i].location);
+      //  printf("City : %s \r\n", companies[i].city);
+        printf("Type : \r\n");
+
+        for(int j = 0; j < schools[i].typeCount; j++){
+            printf(" %d. %s \r\n", j + 1, schools[i].type[j]);
+        }
+    }
+    printf("************************************************************************\n");
+}
+
 
 
 void searchByName(Company *companies, int count){

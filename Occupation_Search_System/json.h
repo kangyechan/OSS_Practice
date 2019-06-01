@@ -54,6 +54,15 @@ typedef struct _Company {
     char positions[10][30];
 } Company;
 
+typedef struct _School {
+    char *name;
+    c_size size;
+    char location[60];
+    int typeCount;
+    char type[10][30];
+} School;
+
+
 typedef struct _User {
     char name[30];
     int salary;
@@ -69,7 +78,9 @@ void json_parse(char*, int, JSON*, int*);
 void freeJson(JSON*, int);
 void printResult(JSON*, int);
 void makeCompanyTokens(JSON*, Company*, int, int*);
+void makeGraduateSchoolToken(JSON*, School*, int, int*);
 void printCompanies(Company*, int);
+void printschools(School*, int);
 void searchByName(Company*, int);
 void searchBySize(Company*, int);
 void searchBySalary(Company*, int);

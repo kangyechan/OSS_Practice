@@ -122,5 +122,23 @@
                 "Algorithm Developer"
             ]
         }
+    ],
+    "graduate school": [
+        {
+            "name": "HANDONG",
+            "location": "pohang",
+            "type": [
+                "Big Data",
+                "AI"
+            ]
+        },
+        {
+            "name": "UNIST",
+            "location": "ULSAN",
+            "type": [
+                "Bio Big Data",
+                "Machine Learning"
+            ]
+        }
     ]
 }
