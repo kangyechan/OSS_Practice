@@ -74,6 +74,7 @@ int main(int argc, char **argv) {
             break;
         case 8:
             printschools(schools, schoolCount);
+            chooseGraduateSchool(schools, schoolCount);
             break;
         case 9:
             printf("OK. Bye! :)\n");
