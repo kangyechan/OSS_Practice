@@ -7,6 +7,7 @@ int main(int argc, char **argv) {
     int filesize = 0;
     char *fileName;
     char *doc;
+    char trash;
     int bigcnt = 0; //total count including objects in value.
     int selectMenu = 0;
     int companyCount = 0;
@@ -52,6 +53,7 @@ int main(int argc, char **argv) {
         printf("****************************************************************\n");
         printf("your select : ");
         scanf("%d", &selectMenu);
+        scanf("%c", &trash);
 
         switch (selectMenu) {
         case 1:
