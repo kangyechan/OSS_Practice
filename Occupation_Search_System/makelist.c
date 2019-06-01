@@ -12,7 +12,7 @@ void makeCompanyTokens(JSON *json, Company *companies, int bigcnt, int *companyC
         if(companyInfoStart){
             if(!strcmp(json->tokens[i].string, "name")){
                 
-                companies[*companyCount].name = json->tokens[i+1].string;
+                strcpy(companies[*companyCount].name,json->tokens[i+1].string);
 
             }else if(!strcmp(json->tokens[i].string, "size")){
 
@@ -31,7 +31,7 @@ void makeCompanyTokens(JSON *json, Company *companies, int bigcnt, int *companyC
 
 
             }else if(!strcmp(json->tokens[i].string, "coding Test")){
-                companies[*companyCount].coding = json->tokens[i+1].string;
+                strcpy(companies[*companyCount].coding , json->tokens[i+1].string);
 
             }else if(!strcmp(json->tokens[i].string, "location")){
                 strcpy(companies[*companyCount].location , json->tokens[i+1].string);

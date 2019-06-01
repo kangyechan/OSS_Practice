@@ -265,7 +265,7 @@ void enterInfo(User* ourUser){
 
     printf("How about working abroad? y/n: \r\n");
     scanf("%s", answer);
-    if(!strcmp(answer, "Yes")){
+    if(!strcmp(answer, "y")){
         ourUser[0].workAbroad=1;
     }else{
         ourUser[0].workAbroad=0;
