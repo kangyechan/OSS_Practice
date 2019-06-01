@@ -31,10 +31,12 @@ int main(int argc, char **argv) {
     makeCompanyTokens(&json, companies, bigcnt, &companyCount);// 파서결과를 Company Array에 저장
     makeGraduateSchoolToken(&json,schools, bigcnt, &schoolCount); //파서 결과를 School Array에 저장.
     freeJson(&json, bigcnt); // 토큰 free
-
+    
+    printf("\nHello!! Welcome to the world of Occupation Search System.\n");
+    printf("Select one of the menus below :)\n");
+    
     while(selectMenu < 8) {
-        printf("\nHello!! Welcome to the world of Occupation Search System.\n");
-        printf("Select one of the menus below :)\n");
+        Sleep(2000);
         printf("************* Occupation Search System Application *************\n");
         printf("*                                                              *\n");
         printf("*    1.                 Show all company.                      *\n");
