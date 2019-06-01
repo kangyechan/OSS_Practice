@@ -298,21 +298,27 @@ void searchByJob(Company *companies, int companyCount, char jobs[][40], int jobC
 
 
 
-void enterInfo(User* ourUser){
+
+void enterInfo(User* ourUser,Company *companies, int companyCount){
     char answer[5];
     char salary[10];
-    printf("What is your first name? : ");
+    int selected[companyCount];
+    int qnum = 0;
+    char *sizeToStr;
+    int selectedComapny = 0;
+    printf(">> What is your name? : ");
     scanf("%s", ourUser[0].name);
     printf("Hi %s, Welcome!", ourUser[0].name);
   
-    printf("\r\nWhere do you live or want to work? : ");
+    printf("\r\n\n>>Where do you live or want to work? : ");
     scanf("%s", ourUser[0].city);
-    printf("So you want to work at %s\r\n", ourUser[0].city);
+    printf("So you want to work at %s.\r\n", ourUser[0].city);
+    qnum++;
 
 
-    printf("How about working abroad? y/n: \r\n");
+    printf("\n>>How about working abroad? Yes/No: ");
     scanf("%s", answer);
-    if(!strcmp(answer, "y")){
+    if(!strcmp(answer, "Yes")){
         ourUser[0].workAbroad=1;
     }else{
         ourUser[0].workAbroad=0;
@@ -324,7 +330,7 @@ void enterInfo(User* ourUser){
     }
     
 
-    printf("How much salary would be okay for you? : ");
+    printf("\n>>How much salary would be okay for you? : ");
     scanf("%s", salary);
     ourUser[0].salary = atoi(salary);
     if( ourUser[0].salary>=7000){
@@ -332,22 +338,90 @@ void enterInfo(User* ourUser){
     }else{
         printf("%d sounds like a good amount.\r\n", ourUser[0].salary);
     }
+    qnum++;
 
-    printf("Now we will run our algorithm....\r\n");
+    printf("\n>>Now we will run our algorithm....\r\n");
     Sleep(1800);
+//     sleep(1.8);
     printf("Making calculations...\r\n");
     Sleep(1800);
+//     sleep(1.8);
     printf("Making a cup of coffee...\r\n");
     Sleep(1800);
+//     sleep(1.8);
     printf("Finalyzing..");
     for (int g = 0; g < 6; g++)
     {
         Sleep(600);
+//         sleep(0.6);
 
         printf("...");
     }
-    printf("\r\nHere are the results!\r\n");
+    printf("\r\n\n>>Here are the results!\r\n");
     Sleep(1500);
-    printf("NONE\r\n");
+//     sleep(1.5);
 
+    //recommend
+
+    for (int i = 0; i < companyCount; i++){
+        selected[i] = 0;
+    }
+
+    for (int i = 0; i < companyCount; i++)
+    {
+        if (companies[i].salary >= ourUser[0].salary)
+        {
+            selected[i]++;
+        }
+
+        if (strstr(ourUser[0].city, companies[i].city) != NULL)
+        {   
+            selected[i]++;
+        }
+        if (ourUser[0].workAbroad==1){
+            if (strstr(companies[i].city, "Seoul")==NULL){
+                selected[i]++;
+            }
+        }
+    }
+
+    for (int selectedComapny = 0; selectedComapny < companyCount; selectedComapny++)
+    {
+        if (selected[selectedComapny] == qnum)
+        {
+
+            if (companies[selectedComapny].size == 1)
+            {
+                sizeToStr = "Large";
+            }
+            else if (companies[selectedComapny].size == 2)
+            {
+                sizeToStr = "Medium";
+            }
+            else if (companies[selectedComapny].size == 3)
+            {
+                sizeToStr = "Small";
+            }
+            else
+            {
+                sizeToStr = "Startup";
+            }
+            printf("\r\n[%d] %s \r\n", selectedComapny,companies[selectedComapny].name);
+            printf("Size : %s", sizeToStr);
+            printf("\r\nRecruiting # : %d \r\n", companies[selectedComapny].recruitNum);
+            printf("Coding Test : %s \r\n", companies[selectedComapny].coding);
+            printf("Salary : %d \r\n", companies[selectedComapny].salary);
+            printf("Location : %s \r\n", companies[selectedComapny].city);
+
+            printf("Available Positions : \r\n");
+            for (int j = 0; j < companies[selectedComapny].positionCount; j++)
+            {
+                printf(" %d. %s \r\n", j + 1, companies[selectedComapny].positions[j]);
+            }
+        }
+    }
+
+    if(selectedComapny == 0){
+        printf("\nOops... seems like there is no company for you. Sorry :( \n");
+    }
 }
