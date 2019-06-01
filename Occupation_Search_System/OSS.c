@@ -96,7 +96,8 @@ void searchBySize(Company *companies, int count){
     char *sizeToStr;
     int selectedComapny;
 
-    printf("Enter size of company: ");
+    printf("Enter size of company\r\n");
+    printf("Large Medium Small Startup :");
     scanf("%s", size);
 
     printf("%d",(int)strlen(size));
@@ -302,8 +303,5 @@ void enterInfo(User* ourUser){
     printf("\r\nHere are the results!\r\n");
     Sleep(1500);
     printf("NONE\r\n");
-
-
-
 
 }
