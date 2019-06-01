@@ -34,7 +34,7 @@ void makeCompanyTokens(JSON *json, Company *companies, int bigcnt, int *companyC
                 companies[*companyCount].coding = json->tokens[i+1].string;
 
             }else if(!strcmp(json->tokens[i].string, "location")){
-                companies[*companyCount].location = json->tokens[i+1].string;
+                strcpy(companies[*companyCount].location , json->tokens[i+1].string);
 
             }else if(!strcmp(json->tokens[i].string, "recruiting")){
                 companies[*companyCount].recruitNum = atoi(json->tokens[i+1].string);

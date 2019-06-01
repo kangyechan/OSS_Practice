@@ -1,4 +1,5 @@
 #include "json.h"
+//gcc -o OSS ./makelist.c ./OSS.c ./jsonparser.c ./main.c
 
 int main(int argc, char **argv) {
     int filesize = 0;

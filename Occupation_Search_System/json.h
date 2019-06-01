@@ -48,11 +48,21 @@ typedef struct _Company {
     int salary;
     int recruitNum;
     char *coding;
-    char *location;
+    char location[60];
     int positionCount;
     char positions[10][30];
 } Company;
 
+typedef struct _User {
+    char *name;
+    c_size size;
+    int salary;
+    int recruitNum;
+    char *coding;
+    char *location;
+    int positionCount;
+    char positions[10][30];
+} User;
 
 char *readfile(char*, int*);
 int fileCheck(char*, char*);
