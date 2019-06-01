@@ -88,5 +88,5 @@ void searchByName(Company*, int);
 void searchBySize(Company*, int);
 void searchBySalary(Company*, int);
 void searchByJob(Company*, int, char[][40], int);
-void enterInfo(User*);
+void enterInfo(User*,Company*, int);
 // void recommendations(User*);
