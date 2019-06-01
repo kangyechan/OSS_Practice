@@ -44,6 +44,7 @@ void printschools(School *schools, int count) {
     printf("*************************************************************************\n\n");
 }
 
+
 void chooseGraduateSchool(School *schools, int count){
     char name[20];
     char *sizeToStr;
@@ -52,7 +53,7 @@ void chooseGraduateSchool(School *schools, int count){
     printf("Enter a graduate school name: ");
     scanf("%s", name);
     printf("\n************************************************************************");
-    printf("Results:");
+    printf("\nResults:");
     for (int i = 0; i < count; i++) {
         // printf("%s",companies[i].name);
 
