@@ -237,9 +237,9 @@ void searchByJob(Company *companies, int companyCount, char jobs[][40], int jobC
     } else{
         sizeToStr = "Startup";
     }
-    printf("Size : %s \r\n", sizeToStr);
     printf("\r\n%s \r\n", companies[selectedComapny-1].name);
-    printf("\r\nRecruiting # : %d \r\n", companies[selectedComapny-1].recruitNum);
+    printf("Size : %s \r\n", sizeToStr);
+    printf("Recruiting # : %d \r\n", companies[selectedComapny-1].recruitNum);
     printf("Coding Test : %s \r\n", companies[selectedComapny-1].coding);
     printf("Salary : %d \r\n", companies[selectedComapny-1].salary);
     printf("Available Positions : \r\n");
@@ -288,24 +288,19 @@ void enterInfo(User* ourUser){
 
     printf("Now we will run our algorithm....\r\n");
     Sleep(1800);
-    //sleep(1.8);
     printf("Making calculations...\r\n");
     Sleep(1800);
-    //sleep(1.8);
     printf("Making a cup of coffee...\r\n");
     Sleep(1800);
-    //sleep(1.8);
     printf("Finalyzing..");
     for (int g = 0; g < 6; g++)
     {
         Sleep(600);
-        //sleep(0.6);
 
         printf("...");
     }
     printf("\r\nHere are the results!\r\n");
     Sleep(1500);
-    //sleep(1.5);
     printf("NONE\r\n");
 
 
