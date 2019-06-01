@@ -121,6 +121,19 @@
                 "Project Manager",
                 "Algorithm Developer"
             ]
+        },
+        {
+            "name": "Stradvision",
+            "size": "Startup",
+            "salary": 3500,
+            "recruiting": 10,
+            "coding Test": "YES",
+            "city": "Pohang",
+            "location": "POSTECH, Pohang",
+            "positions": [
+                "ML Specialist",
+                "Algorithm Developer"
+            ]
         }
     ],
     "graduate school": [
