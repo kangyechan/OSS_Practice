@@ -1,0 +1,175 @@
+{
+    "company information": [
+        {
+            "name": "SAMSUNG Electronics",
+            "size": "Large",
+            "salary": 4000,
+            "recruiting": 10,
+            "coding Test": "YES",
+            "location": "Jamsil, Seoul",
+            "city": "Seoul",
+            "positions": [
+                "Algorithm Developer",
+                "Intern",
+                "App Developer"
+            ]
+        },
+        {
+            "name": "NAVER",
+            "size": "Large",
+            "salary": 3900,
+            "recruiting": 10,
+            "coding Test": "YES",
+            "city": "Sungnam",
+            "location": "Jeongja-dong, Sungnamsi",
+            "positions": [
+                "Data Analyst",
+                "Web Developer",
+                "DB Manager",
+                "Project Manager",
+                "ML Specialist"
+            ]
+        },
+        {
+            "name": "Google",
+            "size": "Large",
+            "salary": 6200,
+            "recruiting": 100,
+            "coding Test": "YES",
+            "city": "Seoul",
+            "location": "Gangnam, Seoul",
+            "positions": [
+                "Data Analyst",
+                "Web Developer",
+                "DB Manager",
+                "Project Manager",
+                "Algorithm Developer",
+                "ML Specialist"
+            ]
+        },
+        {
+            "name": "Amazon",
+            "size": "Large",
+            "salary": 7000,
+            "recruiting": 80,
+            "coding Test": "YES",
+            "city": "Seattle",
+            "location": "Seattle, Washington",
+            "positions": [
+                "Server Manager",
+                "Big Data Specialist",
+                "DB Manager",
+                "UX Specialist",
+                "Web Secuity Specialist"
+            ]
+        },
+        {
+            "name": "TESLA",
+            "size": "Large",
+            "salary": 6300,
+            "recruiting": 50,
+            "coding Test": "YES",
+            "city": "Palo Alto",
+            "location": "3500 Deer Creek Road Palo Alto, California",
+            "positions": [
+                "ADAS Developer",
+                "ML Specialist",
+                "ALGO Optimization Specialist"
+            ]
+        },
+        {
+            "name": "IBM",
+            "size": "Medium",
+            "salary": 5900,
+            "recruiting": 20,
+            "coding Test": "YES",
+            "city": "New York",
+            "location": "Armonk, New York, United States",
+            "positions": [
+                "Server Manager",
+                "Big Data Specialist",
+                "DB Manager"
+            ]
+        },
+        {
+            "name": "Facebook",
+            "size": "Large",
+            "salary": 6100,
+            "recruiting": 40,
+            "coding Test": "YES",
+            "city": "Menlo Park",
+            "location": "1 Hacker Way Menlo Park, California",
+            "positions": [
+                "Server Manager",
+                "Big Data Specialist",
+                "DB Manager",
+                "UX Specialist",
+                "Web Secuity Specialist"
+            ]
+        },
+        {
+            "name": "WooriBank",
+            "size": "Large",
+            "salary": 6200,
+            "recruiting": 100,
+            "coding Test": "YES",
+            "city": "Seoul",
+            "location": "Gangnam, Seoul",
+            "positions": [
+                "Data Analyst",
+                "DB Manager",
+                "Project Manager",
+                "Algorithm Developer"
+            ]
+        },
+        {
+            "name": "Stradvision",
+            "size": "Startup",
+            "salary": 3500,
+            "recruiting": 10,
+            "coding Test": "YES",
+            "city": "Pohang",
+            "location": "POSTECH, Pohang",
+            "positions": [
+                "ML Specialist",
+                "Algorithm Developer"
+            ]
+        }
+    ],
+   "graduate school": [
+        {
+            "name": "HANDONG",
+            "location": "pohang",
+            "type": [
+                "Park Young Chun - Bio-sensing and Automatic Liquid Delivery System",
+                "Kim Kwang,Jang Soyeon  -Information management and supply web/ Application Development for App Service",
+                "Nam Jae chang - Building a Unified Big Data Center",
+                "Lee Won Hyung - Development of Emotional Robot Head for Social Interaction between Human and Robot"
+            ]
+        },
+        {
+            "name": "UNIST",
+            "location": "ULSAN",
+            "type": [
+                "Bio Big Data",
+                "Machine Learning"
+            ]
+        },
+        {
+            "name": "Kyungpook National University",
+            "location": "Daegu",
+            "type": [
+                "Big Data",
+                "Mobile Database"
+            ]
+        },
+        {
+            "name": "Hanyang University",
+            "location": "Seoul",
+            "type": [
+                "System design",
+                "AI"
+            ]
+        }
+    ]
+}

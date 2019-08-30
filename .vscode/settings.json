@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "json.h": "c",
+        "time.h": "c",
+        "windows.h": "c"
+    }
+}
